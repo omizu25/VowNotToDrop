@@ -21,6 +21,9 @@ const string FILE_PATH[] =
 	"data/MODEL/NeedleBall.x",	// 鉄球
 	"data/MODEL/Daruma_Head.x",	// ダルマの頭
 	"data/MODEL/Daruma_Body.x",	// ダルマの身体
+	"data/MODEL/Wing.x",		// 羽根
+	"data/MODEL/Hummer.x",		// ハンマー
+	"data/MODEL/Bamboo.x",		// 門松
 };
 }
 

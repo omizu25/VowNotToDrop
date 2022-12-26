@@ -139,6 +139,9 @@
     <ClCompile Include="player.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="shield.cpp">
+      <Filter>Object\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h" />
@@ -246,6 +249,9 @@
     </ClInclude>
     <ClInclude Include="player.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="shield.h">
+      <Filter>Object\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
