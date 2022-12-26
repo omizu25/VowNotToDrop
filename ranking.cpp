@@ -46,7 +46,7 @@ CRanking::~CRanking()
 //--------------------------------------------------
 void CRanking::Init()
 {
-	{// タイトルロゴ
+	{// 背景
 		CObject2D* pObj = CObject2D::Create();
 
 		// 位置の設定
@@ -60,7 +60,7 @@ void CRanking::Init()
 	}
 
 	{// メニュー
-		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.8f, (float)CApplication::SCREEN_HEIGHT * 0.3f, 0.0f);
+		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.78f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f);
 		D3DXVECTOR3 size = D3DXVECTOR3(450.0f, 100.0f, 0.0f);
 
 		// 生成

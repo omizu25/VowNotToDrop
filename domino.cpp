@@ -12,6 +12,8 @@
 #include "application.h"
 #include "utility.h"
 #include "input.h"
+#include "fade.h"
+#include "mode.h"
 
 //==================================================
 // 定義
@@ -64,8 +66,7 @@ void CDomino::AddMove()
 void CDomino::CreateAll()
 {
 	m_move = 0.0f;
-	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-
+	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 0.0f, -120.0f);
 	for (int i = 0; i < m_count; i++)
 	{
 		// 生成
@@ -133,6 +134,14 @@ void CDomino::Uninit()
 {
 	// 終了
 	CModel::Uninit();
+
+	m_count--;
+
+	if (m_count <= 0)
+	{
+		// モードの変更
+		CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RANKING);
+	}
 }
 
 //--------------------------------------------------
