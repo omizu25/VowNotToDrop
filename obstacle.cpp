@@ -144,21 +144,21 @@ void CObstacle::Update()
 			case 0:
 				if (pInput->Press(KEY_LEFT))
 				{// 左
-					Shield(D3DXVECTOR3(-150.0f, 0.0f, 0.0f));
+					Shield(D3DXVECTOR3(-150.0f, 0.0f, 100.0f));
 				}
 				break;
 
 			case 1:
 				if (pInput->Press(KEY_RIGHT) && nPopNumber == 1)
 				{// 右
-					Shield(D3DXVECTOR3(150.0f, 0.0f, 0.0f));
+					Shield(D3DXVECTOR3(150.0f, 0.0f, 100.0f));
 				}
 				break;
 
 			case 2:
 				if (pInput->Press(KEY_DOWN) && nPopNumber == 2)
 				{// 下
-					Shield(D3DXVECTOR3(0.0f, 0.0f, -150.0f));
+					Shield(D3DXVECTOR3(0.0f, 0.0f, -50.0f));
 				}
 				break;
 
@@ -167,14 +167,14 @@ void CObstacle::Update()
 			}
 		}
 
-		if (!InRange(&pos, D3DXVECTOR3(10.0f, 0.0f, 10.0f)))
+		if (!InRange(&pos, D3DXVECTOR3(20.0f, 0.0f, 110.0f)))
 		{// プレイヤーに当たった
 			CPlayer::AddKill(m_move);
 			CObject::SetRelease();
 		}
 	}
 
-	if (InRange(&pos, D3DXVECTOR3(550.0f, 0.0f, 550.0f)))
+	if (InRange(&pos, D3DXVECTOR3(650.0f, 0.0f, 650.0f)))
 	{// 範囲外に出た
 		CObject::SetRelease();
 	}
