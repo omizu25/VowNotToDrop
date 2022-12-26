@@ -14,6 +14,7 @@
 #include "player.h"
 #include "input.h"
 #include "Score.h"
+#include "domino.h"
 
 //==================================================
 // ’è‹`
@@ -197,5 +198,6 @@ void CObstacle::Shield(const D3DXVECTOR3& pos)
 		m_move.y = 10.0f;
 		m_collision = true;
 		CScore::AddFrag();
+		CDomino::AddCount();
 	}
 }

@@ -23,6 +23,7 @@
 #include "shield.h"
 #include "Score.h"
 #include "ranking_ui.h"
+#include "domino.h"
 
 //==================================================
 // ’è‹`
@@ -71,6 +72,8 @@ void CGame::Init()
 	//‚‚Ì¶¬
 	CShield::CreateAll();
 
+	CDomino::SetCount(0);
+
 	m_pScore = CScore::Create(D3DXVECTOR3(670.0f, 50.0f, 0.0f));
 	m_pScore->SetScore(0);
 }
@@ -82,7 +85,6 @@ void CGame::Uninit()
 {
 	if (m_pScore != nullptr)
 	{
-		m_pScore->SetDomino();
 		m_pScore->Uninit();
 		m_pScore = nullptr;
 	}

@@ -90,11 +90,15 @@ void CPlayer::AddKill(const D3DXVECTOR3& move)
 {
 	if (m_killCount + 1 >= MAX_PLAYER)
 	{
-		if (CDomino::GetCount())
+		if (CDomino::GetCount() == 0)
 		{
 
 		}
-		CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RESULT);
+		else
+		{
+			CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RESULT);
+		}
+		
 		return;
 	}
 
