@@ -92,7 +92,7 @@ void CPlayer::AddKill(const D3DXVECTOR3& move)
 	{
 		if (CDomino::GetCount() == 0)
 		{
-
+			CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RANKING);
 		}
 		else
 		{
