@@ -14,7 +14,7 @@
 #include "fade.h"
 #include "object2D.h"
 #include "object3D.h"
-#include "Ranking.h"
+#include "ranking_ui.h"
 
 //==================================================
 // 定義
@@ -85,7 +85,7 @@ void CResult::Init()
 		// テクスチャの設定
 		m_pMenu->SetTexture(0, CTexture::LABEL_PressEnter);
 	}
-	m_pRanking=CRanking::Create();
+	m_pRanking= CRankingUI::Create();
 }
 
 //--------------------------------------------------

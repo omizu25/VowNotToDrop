@@ -8,7 +8,7 @@
 //------------------------
 // インクルード
 //------------------------
-#include "Ranking.h"
+#include "ranking_ui.h"
 #include "input.h"
 #include <math.h>
 #include "application.h"
@@ -21,12 +21,12 @@
 //------------------------
 // 静的メンバ変数宣言
 //------------------------
-int	CRanking::m_Score;					// 時間
+int	CRankingUI::m_Score;					// 時間
 
 //=========================================
 //コンストラクタ
 //=========================================
-CRanking::CRanking()
+CRankingUI::CRankingUI()
 {
 
 }
@@ -34,7 +34,7 @@ CRanking::CRanking()
 //=========================================
 //デストラクタ
 //=========================================
-CRanking::~CRanking()
+CRankingUI::~CRankingUI()
 {
 
 }
@@ -42,7 +42,7 @@ CRanking::~CRanking()
 //=========================================
 //オブジェクトの初期化処理
 //=========================================
-HRESULT CRanking::Init()
+HRESULT CRankingUI::Init()
 {
 	for (int nCnt = 0; nCnt < MAX_RANK; nCnt++)
 	{
@@ -60,7 +60,7 @@ HRESULT CRanking::Init()
 //=========================================
 //オブジェクトの更新処理
 //=========================================
-void CRanking::Update()
+void CRankingUI::Update()
 {
 
 	if (m_nRankUpdate!=-1)
@@ -82,7 +82,7 @@ void CRanking::Update()
 //=========================================
 //オブジェクトの終了処理
 //=========================================
-void CRanking::Uninit()
+void CRankingUI::Uninit()
 {
 	for (int i = 0; i < MAX_RANK; i++)
 	{
@@ -97,11 +97,11 @@ void CRanking::Uninit()
 //=========================================
 //オブジェクトのクリエイト
 //=========================================
-CRanking* CRanking::Create()
+CRankingUI* CRankingUI::Create()
 {
-	CRanking* pRanking = nullptr;
+	CRankingUI* pRanking = nullptr;
 
-	pRanking = new CRanking;
+	pRanking = new CRankingUI;
 
 	if (pRanking != nullptr)
 	{
@@ -114,7 +114,7 @@ CRanking* CRanking::Create()
 //=========================================
 // 最新のスコアを取得
 //=========================================
-void CRanking::SetCurrentScore(int Time)
+void CRankingUI::SetCurrentScore(int Time)
 {
 	m_Score = Time;
 }
@@ -122,7 +122,7 @@ void CRanking::SetCurrentScore(int Time)
 //=========================================
 // 保存
 //=========================================
-void CRanking::Save()
+void CRankingUI::Save()
 {
 	FILE*fp = fopen("data\\TEXT\\Ranking.txt", "w");		//ファイル読み込み
 	const int lenLine = 1024;							//1単語の最大数
@@ -140,7 +140,7 @@ void CRanking::Save()
 //=========================================
 // 読み込み
 //=========================================
-void CRanking::Load()
+void CRankingUI::Load()
 {
 	FILE*fp = fopen("data\\TEXT\\Ranking.txt", "r");		//ファイル読み込み
 	const int lenLine = 1024;							//1単語の最大数
@@ -161,7 +161,7 @@ void CRanking::Load()
 //=========================================
 // ランキングの並び替え
 //=========================================
-void CRanking::Ranking()
+void CRankingUI::Ranking()
 {
 	//ランク外にしておく
 	m_nRankUpdate = -1;
