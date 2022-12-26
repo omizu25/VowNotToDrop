@@ -1,6 +1,6 @@
 //**************************************************
 // 
-// obstacle.cpp
+// player.cpp
 // Author  : katsuki mizuki
 // 
 //**************************************************
@@ -8,7 +8,7 @@
 //==================================================
 // インクルード
 //==================================================
-#include "obstacle.h"
+#include "player.h"
 #include "application.h"
 #include "utility.h"
 
@@ -17,70 +17,106 @@
 //==================================================
 namespace
 {
-const CFileXManager::ELabel MODEL_PATH = CFileXManager::LABEL_NeedleBall;	// ファイルパス
+const int MAX_PLAYER = 3;
+const float POS_Y[MAX_PLAYER] =
+{
+	30.0f,
+	20.0f,
+	10.0f,
+};
+}
+//==================================================
+// 静的メンバ変数
+//==================================================
+int CPlayer::m_killCount = 0;
+
+//--------------------------------------------------
+// 生成
+//--------------------------------------------------
+void CPlayer::CreateAll()
+{
+	for (int i = 0; i < MAX_PLAYER; i++)
+	{
+		CPlayer* pPlayer = CPlayer::Create(i, POS_Y[i]);
+
+		if (i == 0)
+		{
+			pPlayer->SetLabel(CFileXManager::LABEL_Daruma_Head);
+		}
+		else
+		{
+			pPlayer->SetLabel(CFileXManager::LABEL_Daruma_Body);
+		}
+	}
 }
 
 //--------------------------------------------------
 // 生成
 //--------------------------------------------------
-CObstacle* CObstacle::Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move)
+CPlayer* CPlayer::Create(int index, float posDest)
 {
-	CObstacle* pObstacle = new CObstacle;
+	CPlayer* pPlayer = new CPlayer;
 
-	if (pObstacle == nullptr)
+	if (pPlayer == nullptr)
 	{// nullチェック
 		assert(false);
 		return nullptr;
 	}
 
 	// 初期化
-	pObstacle->Init();
+	pPlayer->Init();
+
+	pPlayer->m_index = index;
+
+	// 目的の位置の設定
+	pPlayer->m_posDest = posDest;
 
 	// 位置の設定
-	pObstacle->SetPos(pos);
+	pPlayer->SetPos(D3DXVECTOR3(0.0f, posDest, 0.0f));
 
-	// 移動量の設定
-	pObstacle->SetMove(move);
+	return pPlayer;
+}
 
-	return pObstacle;
+//--------------------------------------------------
+// 残機の減算
+//--------------------------------------------------
+void CPlayer::AddKill()
+{
+	m_killCount++;
 }
 
 //--------------------------------------------------
 // デフォルトコンストラクタ
 //--------------------------------------------------
-CObstacle::CObstacle() :
-	m_move(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
+CPlayer::CPlayer() :
+	m_index(0),
+	m_posDest(0.0f)
 {
 }
 
 //--------------------------------------------------
 // デストラクタ
 //--------------------------------------------------
-CObstacle::~CObstacle()
+CPlayer::~CPlayer()
 {
 }
 
 //--------------------------------------------------
 // 初期化
 //--------------------------------------------------
-void CObstacle::Init()
+void CPlayer::Init()
 {
-	m_move = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+	m_posDest = 0.0f;
+	m_index = 0;
 
 	// 初期化
 	CModel::Init();
-
-	// 使用するモデルの設定
-	CModel::SetLabel(MODEL_PATH);
-
-	// クォータニオンの設定
-	CModel::SetIsQuaternion(true);
 }
 
 //--------------------------------------------------
 // 終了
 //--------------------------------------------------
-void CObstacle::Uninit()
+void CPlayer::Uninit()
 {
 	// 終了
 	CModel::Uninit();
@@ -89,49 +125,31 @@ void CObstacle::Uninit()
 //--------------------------------------------------
 // 更新
 //--------------------------------------------------
-void CObstacle::Update()
+void CPlayer::Update()
 {
-	// 位置の取得
-	D3DXVECTOR3 pos = CModel::GetPos();
+	int index = m_index + m_killCount;
 
-	pos += m_move;
-
-	// 位置の設定
-	CModel::SetPos(pos);
-
-	if (InRange(&pos, D3DXVECTOR3(550.0f, 0.0f, 550.0f)))
-	{// 範囲外に出た
+	if (index >= MAX_PLAYER)
+	{
 		CObject::SetRelease();
 	}
 
-	// 更新
-	CModel::Update();
+	m_posDest = POS_Y[index];
 
-	// クォータニオンの設定
-	CModel::SetQuaternion(m_move);
+	// 位置の取得
+	D3DXVECTOR3 pos = CModel::GetPos();
+
+	Homing(&pos, pos, D3DXVECTOR3(0.0f, m_posDest, 0.0f), 1.0f);
+
+	// 位置の設定
+	CModel::SetPos(pos);
 }
 
 //--------------------------------------------------
 // 描画
 //--------------------------------------------------
-void CObstacle::Draw()
+void CPlayer::Draw()
 {
 	// 描画
 	CModel::Draw();
-}
-
-//--------------------------------------------------
-// 移動量の設定
-//--------------------------------------------------
-void CObstacle::SetMove(const D3DXVECTOR3& move)
-{
-	m_move = move;
-}
-
-//--------------------------------------------------
-// 移動量の取得
-//--------------------------------------------------
-const D3DXVECTOR3& CObstacle::GetMove() const
-{
-	return m_move;
 }

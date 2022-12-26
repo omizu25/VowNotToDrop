@@ -178,6 +178,8 @@
     <ClCompile Include="object2D.cpp" />
     <ClCompile Include="object3D.cpp" />
     <ClCompile Include="obstacle.cpp" />
+    <ClCompile Include="obstacle_manager.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="precompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -215,6 +217,8 @@
     <ClInclude Include="object2D.h" />
     <ClInclude Include="object3D.h" />
     <ClInclude Include="obstacle.h" />
+    <ClInclude Include="obstacle_manager.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="precompile.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="result.h" />

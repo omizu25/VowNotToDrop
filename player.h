@@ -1,11 +1,11 @@
 //**************************************************
 // 
-// obstacle.h
+// player.h
 // Author  : katsuki mizuki
 // 
 //**************************************************
-#ifndef _OBSTACLE_H_	//このマクロ定義がされてなかったら
-#define _OBSTACLE_H_	//２重インクルード防止のマクロ定義
+#ifndef _PLAYER_H_	//このマクロ定義がされてなかったら
+#define _PLAYER_H_	//２重インクルード防止のマクロ定義
 
 //==================================================
 // インクルード
@@ -15,19 +15,25 @@
 //==================================================
 // クラス
 //==================================================
-class CObstacle : public CModel
+class CPlayer : public CModel
 {
 	/* ↓定義↓ */
 public:
-	
+
+	/* ↓静的メンバ変数↓ */
+private:
+	static int m_killCount;	// キルカウント
+
 	/* ↓静的メンバ関数↓ */
 public:
-	static CObstacle* Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move);	// 生成
+	static void CreateAll();	// 全ての生成
+	static CPlayer* Create(int index, float posDest);	// 生成
+	static void AddKill();	// キルカウントの加算
 
 	/* ↓メンバ関数↓ */
 public:
-	CObstacle();			// デフォルトコンストラクタ
-	~CObstacle() override;	// デストラクタ
+	CPlayer();				// デフォルトコンストラクタ
+	~CPlayer() override;	// デストラクタ
 
 public: 
 	void Init() override;	// 初期化
@@ -36,12 +42,11 @@ public:
 	void Draw() override;	// 描画
 
 public:
-	void SetMove(const D3DXVECTOR3& move);	// 移動量の設定
-	const D3DXVECTOR3& GetMove() const;		// 移動量の取得
 
 	/* ↓メンバ変数↓ */
 private:
-	D3DXVECTOR3 m_move;	// 移動量
+	int m_index;	// 番号
+	float m_posDest;	// 目的の位置
 };
 
 #endif // !_OBSTACLE_H_
