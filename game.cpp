@@ -51,7 +51,7 @@ void CGame::Init()
 	//メッセージの表示
 	{
 		D3DXVECTOR3 pos(640.0f, 360.0f, 0.0f);
-		CMessage::Create(pos, 500.0f, 500.0f);
+		CMessage::Create(pos, 800.0f, 500.0f);
 	}
 
 	//メッシュフィールドの生成
