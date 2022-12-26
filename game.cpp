@@ -41,7 +41,8 @@ CScore* CGame::m_pScore=nullptr;
 //--------------------------------------------------
 // デフォルトコンストラクタ
 //--------------------------------------------------
-CGame::CGame()
+CGame::CGame() :
+	m_time(0)
 {
 }
 
@@ -57,6 +58,8 @@ CGame::~CGame()
 //--------------------------------------------------
 void CGame::Init()
 {
+	m_time = -1;
+
 	//メッセージの表示
 	{
 		D3DXVECTOR3 pos(640.0f, 250.0f, 0.0f);
@@ -136,6 +139,23 @@ void CGame::Uninit()
 //--------------------------------------------------
 void CGame::Update()
 {
+	if (m_time >= 0)
+	{
+		m_time++;
+
+		if (m_time >= 60)
+		{
+			if (CDomino::GetCount() == 0)
+			{
+				CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RANKING);
+			}
+			else
+			{
+				CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RESULT);
+			}
+		}
+	}
+
 	CInput* pInput = CInput::GetKey();
 
 	if (pInput->Trigger(KEY_PAUSE))
@@ -177,4 +197,20 @@ void CGame::Update()
 void CGame::Draw()
 {
 	m_pScore->Draw();
+}
+
+//--------------------------------------------------
+// ゲーム終了
+//--------------------------------------------------
+void CGame::EndGame()
+{
+	m_time = 0;
+}
+
+//--------------------------------------------------
+// 取得
+//--------------------------------------------------
+int CGame::GetTime()
+{
+	return m_time;
 }

@@ -10,6 +10,9 @@
 //==================================================
 #include "obstacle_manager.h"
 #include "obstacle.h"
+#include "application.h"
+#include "mode.h"
+#include "game.h"
 
 //==================================================
 // ’è‹`
@@ -101,6 +104,13 @@ void CObstacleManager::Uninit()
 //--------------------------------------------------
 void CObstacleManager::Update()
 {
+	CGame* pGame = (CGame*)CApplication::GetInstance()->GetMode();
+	int time = pGame->GetTime();
+	if (time >= 0)
+	{
+		return;
+	}
+
 	m_time++;
 
 	// ƒQ[ƒ€

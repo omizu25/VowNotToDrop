@@ -35,12 +35,14 @@ public:
 	void Uninit() override;	// 終了
 	void Update() override;	// 更新
 	void Draw() override;	// 描画
-
 	static CScore*GetScore() { return m_pScore; };
+	void EndGame();
+	int GetTime();
 
 	/* ↓メンバ変数↓ */
 private:
 	static CScore* m_pScore;
+	int m_time;	// タイム
 };
 
 #endif // !_GAME_H_

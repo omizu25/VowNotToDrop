@@ -17,6 +17,8 @@
 #include "domino.h"
 #include "shield.h"
 #include"sound.h"
+#include "game.h"
+#include "mode.h"
 
 //==================================================
 // 定義
@@ -172,6 +174,15 @@ void CObstacle::Update()
 		{// プレイヤーに当たった
 			CPlayer::AddKill(m_move);
 			CObject::SetRelease();
+		}
+
+		CGame* pGame = (CGame*)CApplication::GetInstance()->GetMode();
+		int time = pGame->GetTime();
+		if (time >= 0)
+		{
+			m_move = m_move * -5.0f;
+			m_move.y = 10.0f;
+			m_collision = true;
 		}
 	}
 
