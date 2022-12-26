@@ -25,6 +25,8 @@ public:
 		LAVEL_TATAMI,		// 畳
 		LAVEL_TATAMI_NOLINE,// 畳(線無し)
 		LAVEL_PlayStart,	// 遊戯開始
+		LAVEL_Tutorial,		//達磨を護れ！
+		LAVEL_Count,		//「護った回数　回」
 		LABEL_MAX
 	};
 
