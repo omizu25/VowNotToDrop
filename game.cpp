@@ -20,6 +20,7 @@
 #include "obstacle_manager.h"
 #include "message.h"
 #include "player.h"
+#include "shield.h"
 
 //==================================================
 // 定義
@@ -58,7 +59,11 @@ void CGame::Init()
 
 	// 障害物の生成
 	CObstacleManager::Create();	// プレイヤーの生成
-	CPlayer::CreateAll();}
+	CPlayer::CreateAll();
+
+	//盾の生成
+	CShield::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+}
 
 //--------------------------------------------------
 // 終了
@@ -76,8 +81,7 @@ void CGame::Update()
 
 	if (pInput->Trigger(KEY_PAUSE))
 	{// Pキーが押された
-		CPlayer::AddKill();
-		//CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+		CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	}
 	
 	if (pInput->Trigger(KEY_BACK))

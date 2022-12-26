@@ -94,10 +94,10 @@ void CObstacleManager::Uninit()
 //--------------------------------------------------
 void CObstacleManager::Update()
 {
+	m_time++;
+
 	// ÉQÅ[ÉÄ
 	Game();
-
-	m_time++;
 }
 
 //--------------------------------------------------
