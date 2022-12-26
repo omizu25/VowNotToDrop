@@ -30,15 +30,7 @@ const string FILE_PATH[] =
 	"data/TEXTURE/Count.png",				// 「護った回数　回」
 	"data/TEXTURE/Explanation.png",			// 操作説明(文言)
 	"data/TEXTURE/Explanation_Icon.png"		// 操作説明(アイコン)
-	"data/TEXTURE/effect.png",			// エフェクト
-	"data/TEXTURE/Cursor.png",			// カーソル
-	"data/TEXTURE/PressEnter.png",		// プレスエンター
-	"data/TEXTURE/TitleLogo.png",		// タイトルロゴ
-	"data/TEXTURE/Result.png",			// リザルト
-	"data/TEXTURE/Tatami.png",			// 畳
-	"data/TEXTURE/Tatami_NoLine.png",	// 畳(線無し)
-	"data/TEXTURE/Number.png",	// 畳(線無し)
-
+	"data/TEXTURE/Number.png",				// 畳(線無し)
 };
 }
 

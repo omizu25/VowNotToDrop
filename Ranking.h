@@ -43,6 +43,10 @@ private:
 	static int	m_Score;				// 
 	int			m_nRankUpdate;			//更新ランクNo.
 	CScore*		m_apScore[MAX_RANK];	// スコアの最大数
+	int			m_nflashcnt;			//点滅用
+	int			m_nflashing;			//点滅用
+
+
 
 };
 
