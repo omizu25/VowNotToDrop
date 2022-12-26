@@ -33,6 +33,12 @@ const D3DXVECTOR3 MOVE[] =
 	D3DXVECTOR3( 0.0f, 0.0f, 3.0f),
 	D3DXVECTOR3(-3.0f, 0.0f, 0.0f),
 };
+const D3DXVECTOR3 POP_ROT[] =
+{// 出現の位置
+	D3DXVECTOR3(0.0f, -D3DX_PI * 0.5f, 0.0f),
+	D3DXVECTOR3(0.0f, D3DX_PI, 0.0f),
+	D3DXVECTOR3(0.0f, D3DX_PI * 0.5f, 0.0f),
+};
 const int POP_MAX = sizeof(POP_POS) / sizeof(POP_POS[0]);	// 出現位置の最大数
 }
 
@@ -117,7 +123,7 @@ void CObstacleManager::Game()
 		int random = rand() % POP_MAX;
 
 		// 生成
-		CObstacle::Create(POP_POS[random], MOVE[random] * m_move);
+		CObstacle::Create(POP_POS[random], MOVE[random] * m_move, POP_ROT[random]);
 
 		if (m_pop >= POP_INTERVAL)
 		{// 最大数を越した

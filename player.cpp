@@ -145,6 +145,10 @@ void CPlayer::Update()
 		rot.x += -D3DX_PI * 0.25f;
 		rot.y += -D3DX_PI * 0.25f;
 
+		// Šp“x‚Ì³‹K‰»
+		NormalizeAngle(&rot.x);
+		NormalizeAngle(&rot.y);
+
 		// Œü‚«‚Ìİ’è
 		CModel::SetRot(rot);
 
