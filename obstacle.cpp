@@ -168,7 +168,7 @@ void CObstacle::Update()
 			}
 		}
 
-		if (!InRange(&pos, D3DXVECTOR3(20.0f, 0.0f, 110.0f)))
+		if (!InRange(&pos, D3DXVECTOR3(20.0f, 0.0f, 10.0f)))
 		{// ÉvÉåÉCÉÑÅ[Ç…ìñÇΩÇ¡ÇΩ
 			CPlayer::AddKill(m_move);
 			CObject::SetRelease();
