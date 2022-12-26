@@ -7,6 +7,7 @@
 #include "application.h"
 #include "renderer.h"
 #include<string>
+#include "domino.h"
 
 //=========================================
 //静的メンバ変数
@@ -88,6 +89,14 @@ CScore* CScore::Create(const D3DXVECTOR3 &pos)
 	}
 
 	return pCScore;
+}
+
+//=========================================
+// スコアの加算処理
+//=========================================
+void CScore::SetDomino()
+{
+	CDomino::SetCount(m_nScore);
 }
 
 //=========================================

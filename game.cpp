@@ -22,7 +22,7 @@
 #include "player.h"
 #include "shield.h"
 #include "Score.h"
-#include "Ranking.h"
+#include "ranking_ui.h"
 
 //==================================================
 // ’è‹`
@@ -82,6 +82,7 @@ void CGame::Uninit()
 {
 	if (m_pScore != nullptr)
 	{
+		m_pScore->SetDomino();
 		m_pScore->Uninit();
 		m_pScore = nullptr;
 	}
@@ -115,7 +116,7 @@ void CGame::Update()
 	if (m_pScore != nullptr)
 	{
 		m_pScore->Update();
-		CRanking::SetCurrentScore(m_pScore->GetScore());
+		CRankingUI::SetCurrentScore(m_pScore->GetScore());
 	}
 }
 
