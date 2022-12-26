@@ -28,6 +28,7 @@ public:
 		LABEL_WING,				// 羽根
 		LABEL_HUMMER,			// ハンマー
 		LABEL_BAMBOO,			// 門松
+		LABEL_Hagoita,			// 羽子板
 		LABEL_MAX
 	};
 

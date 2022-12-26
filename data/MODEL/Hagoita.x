@@ -207,7 +207,7 @@ Mesh {
    0.000000;0.000000;0.000000;;
    0.000000;0.000000;0.000000;;
    TextureFilename {
-    "C:\\Users\\student\\Desktop\\Hackathon\\data\\TEXTURE\\Flower.jpg";
+    "data/TEXTURE/Flower.jpg";
    }
   }
   Material {
