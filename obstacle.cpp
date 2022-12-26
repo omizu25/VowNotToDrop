@@ -133,6 +133,8 @@ void CObstacle::Update()
 	// Œü‚«‚Ìİ’è
 	CModel::SetRot(rot);
 
+	if (!m_collision)
+	{
 		CInput* pInput = CInput::GetKey();
 
 		int nPopNumber;
