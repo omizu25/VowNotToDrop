@@ -46,7 +46,7 @@ HRESULT CRankingUI::Init()
 {
 	for (int nCnt = 0; nCnt < MAX_RANK; nCnt++)
 	{
-		m_apScore[nCnt] = CScore::Create(D3DXVECTOR3(470.0f, 190.0f + 119.0f*nCnt, 0.0f));
+		m_apScore[nCnt] = CScore::Create(D3DXVECTOR3(420.0f, 220.0f + 109.0f*nCnt, 0.0f));
 	}
 	m_nflashing = 0;
 	m_nflashcnt = 0;

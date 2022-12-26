@@ -11,10 +11,12 @@
 #include "ranking.h"
 #include "menu.h"
 #include "application.h"
+#include "instancing.h"
 #include "fade.h"
 #include "object2D.h"
 #include "object3D.h"
 #include "ranking_ui.h"
+#include "sound.h"
 
 //==================================================
 // 定義
@@ -48,10 +50,10 @@ void CRanking::Init()
 		CObject2D* pObj = CObject2D::Create();
 
 		// 位置の設定
-		pObj->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, 250.0f, 0.0f));
+		pObj->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT*0.5f, 0.0f));
 
 		// サイズの設定
-		pObj->SetSize(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f));
+		pObj->SetSize(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f));
 
 		// テクスチャの設定
 		pObj->SetTexture(CTexture::LABEL_RankingBG002);
@@ -74,6 +76,9 @@ void CRanking::Init()
 		m_pMenu->SetTexture(0, CTexture::LABEL_PressEnter);
 	}
 	m_pRanking= CRankingUI::Create();
+
+	//曲の再生
+	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Result);
 }
 
 //--------------------------------------------------
@@ -81,6 +86,9 @@ void CRanking::Init()
 //--------------------------------------------------
 void CRanking::Uninit()
 {
+	//曲の停止
+	CApplication::GetInstance()->GetSound()->Stop();
+
 	if (m_pMenu != nullptr)
 	{// nullチェック
 		m_pMenu = nullptr;
