@@ -30,6 +30,11 @@ public:
 	void Draw();
 
 	//------------------
+	// ゲッター
+	//------------------
+	static int GetNumPop(int nIndex);
+
+	//------------------
 	// 静的メンバ関数
 	//------------------
 	static void CreateAll();

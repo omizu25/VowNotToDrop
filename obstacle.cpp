@@ -15,6 +15,7 @@
 #include "input.h"
 #include "Score.h"
 #include "domino.h"
+#include "shield.h"
 
 //==================================================
 // ’è‹`
@@ -133,17 +134,37 @@ void CObstacle::Update()
 	{// “–‚½‚Á‚Ä‚È‚¢
 		CInput* pInput = CInput::GetKey();
 
-		if (pInput->Press(KEY_LEFT))
-		{// ¶
-			Shield(D3DXVECTOR3(-150.0f, 0.0f, 0.0f));
-		}
-		else if (pInput->Press(KEY_RIGHT))
-		{// ‰E
-			Shield(D3DXVECTOR3(150.0f, 0.0f, 0.0f));
-		}
-		else if (pInput->Press(KEY_DOWN))
-		{// ‰º
-			Shield(D3DXVECTOR3(0.0f, 0.0f, -150.0f));
+		int nPopNumber;
+		for (int i = 0; i < 3; i++)
+		{
+			nPopNumber = CShield::GetNumPop(i);
+
+			switch (nPopNumber)
+			{
+			case 0:
+				if (pInput->Press(KEY_LEFT))
+				{// ¶
+					Shield(D3DXVECTOR3(-150.0f, 0.0f, 0.0f));
+				}
+				break;
+
+			case 1:
+				if (pInput->Press(KEY_RIGHT) && nPopNumber == 1)
+				{// ‰E
+					Shield(D3DXVECTOR3(150.0f, 0.0f, 0.0f));
+				}
+				break;
+
+			case 2:
+				if (pInput->Press(KEY_DOWN) && nPopNumber == 2)
+				{// ‰º
+					Shield(D3DXVECTOR3(0.0f, 0.0f, -150.0f));
+				}
+				break;
+
+			default:
+				break;
+			}
 		}
 
 		if (!InRange(&pos, D3DXVECTOR3(10.0f, 0.0f, 10.0f)))
