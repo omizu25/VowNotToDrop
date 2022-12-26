@@ -19,13 +19,13 @@
 //==================================================
 namespace
 {
-const CFileXManager::ELabel MODEL_PATH = CFileXManager::LABEL_NeedleBall;	// ファイルパス
+const CFileXManager::ELabel MODEL_PATH = CFileXManager::LABEL_WING;	// ファイルパス
 }
 
 //--------------------------------------------------
 // 生成
 //--------------------------------------------------
-CObstacle* CObstacle::Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move)
+CObstacle* CObstacle::Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move, const D3DXVECTOR3& rot)
 {
 	CObstacle* pObstacle = new CObstacle;
 
@@ -44,6 +44,9 @@ CObstacle* CObstacle::Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move)
 	// 移動量の設定
 	pObstacle->SetMove(move);
 
+	// 向きの設定
+	pObstacle->SetRot(rot);
+
 	return pObstacle;
 }
 
@@ -51,7 +54,8 @@ CObstacle* CObstacle::Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move)
 // デフォルトコンストラクタ
 //--------------------------------------------------
 CObstacle::CObstacle() :
-	m_move(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
+	m_move(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
+	m_collision(false)
 {
 }
 
@@ -68,15 +72,13 @@ CObstacle::~CObstacle()
 void CObstacle::Init()
 {
 	m_move = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+	m_collision = false;
 
 	// 初期化
 	CModel::Init();
 
 	// 使用するモデルの設定
 	CModel::SetLabel(MODEL_PATH);
-
-	// クォータニオンの設定
-	CModel::SetIsQuaternion(true);
 }
 
 //--------------------------------------------------
@@ -101,25 +103,52 @@ void CObstacle::Update()
 	// 位置の設定
 	CModel::SetPos(pos);
 
-	CInput* pInput = CInput::GetKey();
+	// 向きの取得
+	D3DXVECTOR3 rot = CModel::GetRot();
 
-	if (pInput->Press(KEY_LEFT))
-	{// 左
-		Shield(D3DXVECTOR3(-50.0f, 0.0f, 0.0f));
+	if (m_collision)
+	{// 当たった
+		rot.x += -D3DX_PI * 0.25f;
+		rot.y += -D3DX_PI * 0.25f;
+
+		// 角度の正規化
+		NormalizeAngle(&rot.x);
+		NormalizeAngle(&rot.y);
+
 	}
-	else if (pInput->Press(KEY_RIGHT))
-	{// 右
-		Shield(D3DXVECTOR3(50.0f, 0.0f, 0.0f));
-	}
-	else if (pInput->Press(KEY_DOWN))
-	{// 下
-		Shield(D3DXVECTOR3(0.0f, 0.0f, -50.0f));
+	else
+	{
+		rot.z += -D3DX_PI * 0.1f;
+
+		// 角度の正規化
+		NormalizeAngle(&rot.z);
 	}
 
-	if (!InRange(&pos, D3DXVECTOR3(10.0f, 0.0f, 10.0f)))
-	{// 範囲内に入った
-		CPlayer::AddKill(m_move);
-		CObject::SetRelease();
+	// 向きの設定
+	CModel::SetRot(rot);
+
+	if (!m_collision)
+	{// 当たってない
+		CInput* pInput = CInput::GetKey();
+
+		if (pInput->Press(KEY_LEFT))
+		{// 左
+			Shield(D3DXVECTOR3(-50.0f, 0.0f, 0.0f));
+		}
+		else if (pInput->Press(KEY_RIGHT))
+		{// 右
+			Shield(D3DXVECTOR3(50.0f, 0.0f, 0.0f));
+		}
+		else if (pInput->Press(KEY_DOWN))
+		{// 下
+			Shield(D3DXVECTOR3(0.0f, 0.0f, -50.0f));
+		}
+
+		if (!InRange(&pos, D3DXVECTOR3(10.0f, 0.0f, 10.0f)))
+		{// プレイヤーに当たった
+			CPlayer::AddKill(m_move);
+			CObject::SetRelease();
+		}
 	}
 
 	if (InRange(&pos, D3DXVECTOR3(550.0f, 0.0f, 550.0f)))
@@ -129,9 +158,6 @@ void CObstacle::Update()
 
 	// 更新
 	CModel::Update();
-
-	// クォータニオンの設定
-	CModel::SetQuaternion(m_move);
 }
 
 //--------------------------------------------------
@@ -165,8 +191,9 @@ const D3DXVECTOR3& CObstacle::GetMove() const
 void CObstacle::Shield(const D3DXVECTOR3& pos)
 {
 	if (CollisionCircle(CModel::GetPos(), 10.0f, pos, 10.0f))
-	{// 当たった
+	{// 門松に当たった
 		m_move = m_move * -5.0f;
 		m_move.y = 10.0f;
+		m_collision = true;
 	}
 }
