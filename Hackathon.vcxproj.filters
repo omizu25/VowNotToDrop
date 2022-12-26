@@ -31,6 +31,15 @@
     <Filter Include="Object\Model">
       <UniqueIdentifier>{15b24148-ffe1-4f1f-93f0-eb6850430def}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Object2D">
+      <UniqueIdentifier>{0fa63155-46e1-4836-9d2c-53f63dbfc268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Object3D">
+      <UniqueIdentifier>{b0a43dba-ccee-4dd2-a259-10bc25f241d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Mesh">
+      <UniqueIdentifier>{13bb9780-3ed0-4c82-8499-ec724a3aa5fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="precompile.cpp" />
@@ -41,12 +50,6 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="object2D.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="object3D.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="renderer.cpp">
@@ -116,10 +119,19 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="light.cpp">
-      <Filter>System</Filter>
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="object2D.cpp">
+      <Filter>Object\Object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="object3D.cpp">
+      <Filter>Object\Object3D</Filter>
     </ClCompile>
     <ClCompile Include="mesh_field.cpp">
-      <Filter>Object</Filter>
+      <Filter>Object\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="message.cpp">
+      <Filter>Object\Object2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,12 +143,6 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="object.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="object2D.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="object3D.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="renderer.h">
@@ -207,6 +213,21 @@
     </ClInclude>
     <ClInclude Include="obstacle.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="object2D.h">
+      <Filter>Object\Object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="object3D.h">
+      <Filter>Object\Object3D</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh_field.h">
+      <Filter>Object\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="message.h">
+      <Filter>Object\Object2D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

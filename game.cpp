@@ -17,6 +17,7 @@
 #include "object3D.h"
 #include "obstacle.h"
 #include "mesh_field.h"
+#include "message.h"
 
 //==================================================
 // 定義
@@ -46,6 +47,12 @@ void CGame::Init()
 {
 	// 生成
 	CObstacle::Create();
+
+	//メッセージの表示
+	{
+		D3DXVECTOR3 pos(640.0f, 360.0f, 0.0f);
+		CMessage::Create(pos, 500.0f, 500.0f);
+	}
 
 	//メッシュフィールドの生成
 	CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);

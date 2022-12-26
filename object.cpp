@@ -107,7 +107,7 @@ void CObject::UpdateAll()
 
 			if (pObj->m_release)
 			{// ‰ð•ú‚·‚é
-				pObj->Release();
+				pObj->Uninit();
 			}
 
 			pObj = pObjNext;
