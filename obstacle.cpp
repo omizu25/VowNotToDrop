@@ -134,15 +134,15 @@ void CObstacle::Update()
 
 		if (pInput->Press(KEY_LEFT))
 		{// ¶
-			Shield(D3DXVECTOR3(-100.0f, 0.0f, 0.0f));
+			Shield(D3DXVECTOR3(-150.0f, 0.0f, 0.0f));
 		}
 		else if (pInput->Press(KEY_RIGHT))
 		{// ‰E
-			Shield(D3DXVECTOR3(100.0f, 0.0f, 0.0f));
+			Shield(D3DXVECTOR3(150.0f, 0.0f, 0.0f));
 		}
 		else if (pInput->Press(KEY_DOWN))
 		{// ‰º
-			Shield(D3DXVECTOR3(0.0f, 0.0f, -100.0f));
+			Shield(D3DXVECTOR3(0.0f, 0.0f, -150.0f));
 		}
 
 		if (!InRange(&pos, D3DXVECTOR3(10.0f, 0.0f, 10.0f)))
