@@ -30,6 +30,8 @@ const string FILE_PATH[] =
 	"data/TEXTURE/Count.png",				// 「護った回数　回」
 	"data/TEXTURE/Explanation.png",			// 操作説明(文言)
 	"data/TEXTURE/Explanation_Icon.png"		// 操作説明(アイコン)
+	"data/TEXTURE/Number.png",				// 畳(線無し)
+	"data/TEXTURE/Number_Secret.png",		// ナンバー秘匿用
 };
 }
 

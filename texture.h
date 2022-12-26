@@ -29,6 +29,8 @@ public:
 		LAVEL_Count,			//「護った回数　回」
 		LABEL_Explanation,		// 操作説明(文言)
 		LABEL_Explanation_Icon,	// 操作説明(アイコン)
+		LABEL_Number,			// ナンバー画像
+		LABEL_Number_Secret,	// ナンバー秘匿用
 		LABEL_MAX
 	};
 

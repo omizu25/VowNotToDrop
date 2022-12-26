@@ -14,6 +14,7 @@
 #include "fade.h"
 #include "object2D.h"
 #include "object3D.h"
+#include "Ranking.h"
 
 //==================================================
 // 定義
@@ -84,6 +85,7 @@ void CResult::Init()
 		// テクスチャの設定
 		m_pMenu->SetTexture(0, CTexture::LABEL_PressEnter);
 	}
+	m_pRanking=CRanking::Create();
 }
 
 //--------------------------------------------------
@@ -94,6 +96,11 @@ void CResult::Uninit()
 	if (m_pMenu != nullptr)
 	{// nullチェック
 		m_pMenu = nullptr;
+	}
+	if (m_pRanking != nullptr)
+	{
+		m_pRanking->Uninit();
+		m_pRanking = nullptr;
 	}
 
 	// 解放
@@ -107,6 +114,8 @@ void CResult::Update()
 {
 	// 入力
 	Input();
+
+	m_pRanking->Update();
 }
 
 //--------------------------------------------------
