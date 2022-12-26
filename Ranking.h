@@ -11,8 +11,8 @@
 
 class CScore;
 
-#define MAX_DIGITS		(8)			// スコアの桁数
-#define MAX_RANK		(5)			//表示するランキングの最大数
+#define FLASH_INTER		(20)		//点滅の間隔
+
 
 //=========================================
 // スコアクラスを定義
@@ -39,10 +39,11 @@ public:
 	static void SetCurrentScore(int Time);
 
 private:
+	static const int nMaxRank = 5;
 	D3DXVECTOR3 m_pos;					// 座標
 	static int	m_Score;				// 
 	int			m_nRankUpdate;			//更新ランクNo.
-	CScore*		m_apScore[MAX_RANK];	// スコアの最大数
+	CScore*		m_apScore[nMaxRank];	// スコアの最大数
 	int			m_nflashcnt;			//点滅用
 	int			m_nflashing;			//点滅用
 
