@@ -157,6 +157,7 @@
     <ClCompile Include="application.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="directinput.cpp" />
+    <ClCompile Include="domino.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="file_x.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="application.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="directinput.h" />
+    <ClInclude Include="domino.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="file_x.h" />

@@ -151,6 +151,9 @@
     <ClCompile Include="number.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="domino.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h" />
@@ -275,6 +278,9 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="number.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="domino.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>

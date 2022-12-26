@@ -77,6 +77,7 @@ void CGame::Uninit()
 {
 	if (m_pScore != nullptr)
 	{
+		m_pScore->SetDomino();
 		m_pScore->Uninit();
 		m_pScore = nullptr;
 	}

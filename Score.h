@@ -38,7 +38,7 @@ public:
 	static CScore* Create(const D3DXVECTOR3 &pos);
 
 	void Addpos();
-
+	void SetDomino();
 
 	//ÉXÉRÉAÇÃê›íË
 	void Set();

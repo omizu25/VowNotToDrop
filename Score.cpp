@@ -7,6 +7,7 @@
 #include "application.h"
 #include "renderer.h"
 #include<string>
+#include "domino.h"
 
 //=========================================
 //コンストラクタ
@@ -86,6 +87,14 @@ CScore* CScore::Create(const D3DXVECTOR3 &pos)
 void CScore::Addpos()
 {
 	m_nScore++;
+}
+
+//=========================================
+// スコアの加算処理
+//=========================================
+void CScore::SetDomino()
+{
+	CDomino::SetCount(m_nScore);
 }
 
 //=========================================
