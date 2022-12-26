@@ -19,6 +19,7 @@
 #include "menu.h"
 #include "result.h"
 #include "sound.h"
+#include "object3D.h"
 
 //==================================================
 // 定義
@@ -46,8 +47,18 @@ CResult::~CResult()
 //--------------------------------------------------
 void CResult::Init()
 {
-	//メッシュフィールドの生成
-	CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
+	{// 背景
+		CObject3D* pObj = CObject3D::Create();
+
+		D3DXVECTOR3 size = D3DXVECTOR3(1800.0f, 0.0f, 1800.0f);
+
+		// サイズの設定
+		pObj->SetSize(size);
+
+		// テクスチャの設定
+		pObj->SetTexture(CTexture::LAVEL_TATAMI);
+	}
+
 
 	CDomino::CreateAll();
 
