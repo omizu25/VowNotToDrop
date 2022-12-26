@@ -208,3 +208,16 @@ void CShield::ResetMove(int index)
 		bPop[index] = false;
 	}
 }
+
+//================================
+// ˆÚ“®‚ÌƒŠƒZƒbƒgˆ—
+//================================
+int CShield::GetNumPop(int nIndex)
+{
+	if (bPop[nIndex] == true)
+	{
+		return nIndex;
+	}
+
+	return 3;
+}
