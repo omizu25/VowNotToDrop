@@ -90,9 +90,20 @@ void CGame::Init()
 	m_pScore = CScore::Create(D3DXVECTOR3(670.0f, 50.0f, 0.0f));
 	m_pScore->SetScore(0);
 
+	//操作説明(文言)
+	CObject2D* pTutorial =  CObject2D::Create();
+	pTutorial->SetPos(D3DXVECTOR3(1050.0f, 550.0f, 0.0f));
+	pTutorial->SetSize(D3DXVECTOR3(400.0f, 100.0f, 0.0f));
+	pTutorial->SetTexture(CTexture::LABEL_Explanation);
+
+	//操作説明(アイコン)
+	CObject2D* pIcon = CObject2D::Create();
+	pIcon->SetPos(pTutorial->GetPos() + D3DXVECTOR3(0.0f, 100.0f, 0.0f));
+	pIcon->SetSize(D3DXVECTOR3(400.0f, 100.0f, 0.0f));
+	pIcon->SetTexture(CTexture::LABEL_Explanation_Icon);
+
 	//曲の再生
-	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Game);
-}
+	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Game);}
 
 //--------------------------------------------------
 // 終了
@@ -107,6 +118,9 @@ void CGame::Uninit()
 		m_pScore->Uninit();
 		m_pScore = nullptr;
 	}
+
+	// 解放
+	Release();
 }
 
 //--------------------------------------------------
@@ -123,7 +137,14 @@ void CGame::Update()
 	
 	if (pInput->Trigger(KEY_BACK))
 	{
-		CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_RESULT);
+		if (CDomino::GetCount() == 0)
+		{
+			CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RANKING);
+		}
+		else
+		{
+			CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RESULT);
+		}
 	}
 
 	if (pInput->Trigger(KEY_SHOT))
