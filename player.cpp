@@ -52,6 +52,14 @@ void CPlayer::CreateAll()
 		{
 			m_pPlayer[i]->SetLabel(CFileXManager::LABEL_Daruma_Head);
 		}
+		else if (i == 1)
+		{
+			m_pPlayer[i]->SetLabel(CFileXManager::LABEL_Daruma_Body_Orange);
+		}
+		else if (i == 2)
+		{
+			m_pPlayer[i]->SetLabel(CFileXManager::LABEL_Daruma_Body_Yellow);
+		}
 		else
 		{
 			m_pPlayer[i]->SetLabel(CFileXManager::LABEL_Daruma_Body);

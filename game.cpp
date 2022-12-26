@@ -156,34 +156,6 @@ void CGame::Update()
 		}
 	}
 
-	CInput* pInput = CInput::GetKey();
-
-	if (pInput->Trigger(KEY_PAUSE))
-	{// PƒL[‚ª‰Ÿ‚³‚ê‚½
-		CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	}
-	
-	if (pInput->Trigger(KEY_BACK))
-	{
-		if (CDomino::GetCount() == 0)
-		{
-			CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RANKING);
-		}
-		else
-		{
-			CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RESULT);
-		}
-	}
-
-	if (pInput->Trigger(KEY_SHOT))
-	{
-		if (m_pScore != nullptr)
-		{
-			m_pScore->Addpos();
-		}
-		CDomino::AddCount();
-	}
-
 	if (m_pScore != nullptr)
 	{
 		m_pScore->Update();
