@@ -93,7 +93,7 @@ void CGame::Init()
 
 	//回数カウント(文言)
 	CObject2D* pCount = CObject2D::Create();
-	pCount->SetPos(D3DXVECTOR3(300.0f, 650.0f, 0.0f));
+	pCount->SetPos(D3DXVECTOR3(1000.0f, 60.0f, 0.0f));
 	pCount->SetSize(D3DXVECTOR3(550.0f, 100.0f, 0.0f));
 	pCount->SetTexture(CTexture::LAVEL_Count);
 
@@ -101,17 +101,35 @@ void CGame::Init()
 	m_pScore = CScore::Create(pCount->GetPos() + D3DXVECTOR3(150.0f, 0.0f, 0.0f));
 	m_pScore->SetScore(0);
 
-	//操作説明(文言)
-	CObject2D* pTutorial =  CObject2D::Create();
-	pTutorial->SetPos(D3DXVECTOR3(1050.0f, 550.0f, 0.0f));
-	pTutorial->SetSize(D3DXVECTOR3(400.0f, 100.0f, 0.0f));
-	pTutorial->SetTexture(CTexture::LABEL_Explanation);
+	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
-	//操作説明(アイコン)
-	CObject2D* pIcon = CObject2D::Create();
-	pIcon->SetPos(pTutorial->GetPos() + D3DXVECTOR3(0.0f, 100.0f, 0.0f));
-	pIcon->SetSize(D3DXVECTOR3(400.0f, 100.0f, 0.0f));
-	pIcon->SetTexture(CTexture::LABEL_Explanation_Icon);
+	{//操作説明(アイコン)
+		CObject2D* pIcon = CObject2D::Create();
+
+		//位置を設定
+		pIcon->SetPos(D3DXVECTOR3(270.0f, 480.0f, 0.0f));
+
+		//サイズを設定
+		pIcon->SetSize(D3DXVECTOR3(550.0f, 150.0f, 0.0f));
+
+		//テクスチャの設定
+		pIcon->SetTexture(CTexture::LABEL_Explanation_Icon);
+
+		pos = pIcon->GetPos();	//位置を取得
+	}
+
+	{//操作説明(文言)
+		CObject2D* pTutorial = CObject2D::Create();
+
+		//位置を設定
+		pTutorial->SetPos(pos + D3DXVECTOR3(0.0f, 150.0f, 0.0f));
+
+		//サイズを設定
+		pTutorial->SetSize(D3DXVECTOR3(450.0f, 125.0f, 0.0f));
+
+		//テクスチャの設定
+		pTutorial->SetTexture(CTexture::LABEL_Explanation);
+	}
 
 	//曲の再生
 	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Game);}

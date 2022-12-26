@@ -72,7 +72,7 @@ void CDomino::CreateAll()
 		// ê∂ê¨
 		CDomino::Create(pos);
 
-		pos.x += 50.0f;
+		pos.x += 100.0f;
 	}
 }
 
@@ -167,7 +167,7 @@ void CDomino::Update()
 		// à íuÇÃéÊìæ
 		D3DXVECTOR3 rot = CModel::GetRot();
 
-		rot.x += (m_move * -1.0f) * 0.01f;
+		rot.x += (m_move * -1.0f) * 0.002f;
 
 		// äpìxÇÃê≥ãKâª
 		NormalizeAngle(&rot.x);
