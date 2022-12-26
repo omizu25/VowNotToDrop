@@ -76,6 +76,18 @@ void CGame::Init()
 
 	m_pScore = CScore::Create(D3DXVECTOR3(670.0f, 50.0f, 0.0f));
 	m_pScore->SetScore(0);
+
+	//‘€ìà–¾(•¶Œ¾)
+	CObject2D* pTutorial =  CObject2D::Create();
+	pTutorial->SetPos(D3DXVECTOR3(1050.0f, 550.0f, 0.0f));
+	pTutorial->SetSize(D3DXVECTOR3(400.0f, 100.0f, 0.0f));
+	pTutorial->SetTexture(CTexture::LABEL_Explanation);
+
+	//‘€ìà–¾(ƒAƒCƒRƒ“)
+	CObject2D* pIcon = CObject2D::Create();
+	pIcon->SetPos(pTutorial->GetPos() + D3DXVECTOR3(0.0f, 100.0f, 0.0f));
+	pIcon->SetSize(D3DXVECTOR3(400.0f, 100.0f, 0.0f));
+	pIcon->SetTexture(CTexture::LABEL_Explanation_Icon);
 }
 
 //--------------------------------------------------
