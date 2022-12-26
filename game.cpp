@@ -88,6 +88,9 @@ void CGame::Uninit()
 		m_pScore->Uninit();
 		m_pScore = nullptr;
 	}
+
+	// ‰ð•ú
+	Release();
 }
 
 //--------------------------------------------------
