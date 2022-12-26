@@ -154,6 +154,9 @@
     <ClCompile Include="ranking_ui.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="ranking.cpp">
+      <Filter>System\Mode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h" />
@@ -282,6 +285,9 @@
     </ClInclude>
     <ClInclude Include="ranking_ui.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking.h">
+      <Filter>System\Mode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

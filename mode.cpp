@@ -12,6 +12,7 @@
 #include "title.h"
 #include "game.h"
 #include "result.h"
+#include "ranking.h"
 
 //==================================================
 // ’è‹`
@@ -41,6 +42,10 @@ CMode* CMode::Create(EMode mode)
 		pMode = new CResult;
 		break;
 
+	case CMode::MODE_RANKING:
+		pMode = new CRanking;
+		break;
+		
 	case CMode::MODE_MAX:
 	case CMode::MODE_NONE:
 	default:

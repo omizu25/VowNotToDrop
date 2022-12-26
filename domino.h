@@ -27,6 +27,7 @@ private:
 
 	/* ↓静的メンバ関数↓ */
 public:
+	static int GetCount();	// 取得
 	static void SetCount(int score);	// 設定
 	static void AddMove();		// 速度の加算
 	static void CreateAll();	// 全ての生成

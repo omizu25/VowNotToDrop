@@ -13,6 +13,7 @@
 #include "mode.h"
 #include "fade.h"
 #include "utility.h"
+#include "domino.h"
 
 //==================================================
 // ’è‹`
@@ -89,6 +90,10 @@ void CPlayer::AddKill(const D3DXVECTOR3& move)
 {
 	if (m_killCount + 1 >= MAX_PLAYER)
 	{
+		if (CDomino::GetCount())
+		{
+
+		}
 		CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RESULT);
 		return;
 	}
