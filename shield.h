@@ -32,7 +32,8 @@ public:
 	//------------------
 	// Ã“Iƒƒ“ƒoŠÖ”
 	//------------------
-	static CShield* Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot);
+	static void CreateAll();
+	static CShield* Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, int index);
 
 private:
 	//------------------
@@ -40,6 +41,7 @@ private:
 	//------------------
 	D3DXVECTOR3 m_defaultPos;	//‰ŠúˆÊ’u
 	D3DXVECTOR3 m_rot;			//Œü‚«
+	int m_index;				//”Ô†
 };
 
 #endif
