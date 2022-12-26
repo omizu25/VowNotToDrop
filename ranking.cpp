@@ -60,20 +60,18 @@ void CRanking::Init()
 	}
 
 	{// メニュー
-		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.75f, 0.0f);
+		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.8f, (float)CApplication::SCREEN_HEIGHT * 0.3f, 0.0f);
 		D3DXVECTOR3 size = D3DXVECTOR3(450.0f, 100.0f, 0.0f);
 
 		// 生成
-		m_pMenu = CMenu::Create(pos, size, 1, 50.0f);
-
-		// 枠の設定
-		m_pMenu->SetFrame(pos, D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, 200.0f, 0.0f), D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.5f));
+		m_pMenu = CMenu::Create(pos, size, 2, 50.0f);
 
 		// カーソルの設定
 		m_pMenu->SetCursor(D3DXVECTOR3(100.0f, 50.0f, 0.0f), 20.0f);
 
 		// テクスチャの設定
-		m_pMenu->SetTexture(0, CTexture::LABEL_PressEnter);
+		m_pMenu->SetTexture(0, CTexture::LABEL_Restart);
+		m_pMenu->SetTexture(1, CTexture::LABEL_ReturnToTitle);
 	}
 	m_pRanking= CRankingUI::Create();
 
@@ -133,6 +131,15 @@ void CRanking::Input()
 		return;
 	}
 
-	// モードの変更
-	CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_TITLE);
+	if (select == 0)
+	{
+		// モードの変更
+		CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_GAME);
+	}
+	else
+	{
+		// モードの変更
+		CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_TITLE);
+	}
+	
 }
