@@ -8,7 +8,7 @@
 #define _CAMERA_H_	// ２重インクルード防止のマクロ定義
 
 //==================================================
-// 定義
+// クラス/
 //==================================================
 class CCamera
 {
@@ -32,13 +32,11 @@ public:
 
 	/* ↓メンバ変数↓ */
 private:
-	D3DXVECTOR3 m_pos;		// 現在の視点
-	D3DXVECTOR3 m_posDest;	// 目的の視点
-	D3DXVECTOR3 m_vecU;		// 上方向ベクトル
-	D3DXVECTOR3 m_rot;		// 現在の向き
-	D3DXVECTOR3 m_rotDest;	// 目的の向き
 	D3DXMATRIX m_mtxProj;	// プロジェクションマトリックス
 	D3DXMATRIX m_mtxView;	// ビューマトリックス
+	D3DXVECTOR3 m_posV;		// 視点
+	D3DXVECTOR3 m_posR;		// 注視点
+	D3DXVECTOR3 m_vecU;		// 上方向ベクトル
 };
 
 #endif // !_CAMERA_H_

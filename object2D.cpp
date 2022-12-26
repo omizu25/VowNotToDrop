@@ -168,6 +168,9 @@ void CObject2D::Draw()
 	// デバイスへのポインタの取得
 	LPDIRECT3DDEVICE9 pDevice = CApplication::GetInstance()->GetDevice();
 
+	// ライトを無効にする
+	pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
+
 	// 頂点バッファをデータストリームに設定
 	pDevice->SetStreamSource(0, m_pVtxBuff, 0, sizeof(VERTEX));
 
@@ -184,6 +187,9 @@ void CObject2D::Draw()
 		D3DPT_TRIANGLESTRIP,	// プリミティブの種類
 		0,						// 描画する最初の頂点インデックス
 		NUM_POLYGON);			// プリミティブ(ポリゴン)数
+	
+	// ライトを有効にする
+	pDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
 }
 
 //--------------------------------------------------

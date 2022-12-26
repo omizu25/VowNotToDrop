@@ -52,10 +52,10 @@ public:
 	const D3DXVECTOR3& GetPos() const;			// 位置の取得
 	void SetSize(const D3DXVECTOR3& size);		// サイズの設定
 	const D3DXVECTOR3& GetSize() const;			// サイズの取得
+	void SetRot(const D3DXVECTOR3& rot);		// 向きの設定
+	const D3DXVECTOR3& GetRot() const;			// 向きの取得
 	void SetCol(const D3DXCOLOR& col);			// 色の設定
 	const D3DXCOLOR& GetCol() const;			// 色の取得
-	void SetRot(float rot);						// 向きの設定
-	float GetRot() const;						// 向きの取得
 	void SetTexture(CTexture::ELabel texture);	// テクスチャの設定
 	void SetVtxTex(const D3DXVECTOR2& u, const D3DXVECTOR2& v);	// テクスチャ座標の設定
 
@@ -64,10 +64,10 @@ private:
 	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;	// 頂点バッファのポインタ
 	D3DXMATRIX m_mtxWorld;		// ワールドマトリックス
 	CTexture::ELabel m_texture;	// テクスチャの列挙型
-	D3DXVECTOR3 m_pos;	// 位置
 	D3DXVECTOR3 m_size;	// サイズ
+	D3DXVECTOR3 m_pos;	// 位置
+	D3DXVECTOR3 m_rot;	// 向き
 	D3DXCOLOR m_col;	// 色
-	float m_rot;		// 向き
 };
 
 #endif // !_OBJECT3D_H_
