@@ -45,20 +45,20 @@ struct VS_OUT {
 VS_OUT vsMain(
 	float2 pos : POSITION,
 	float2 localUV : TEXCOORD0,
-	float3 worldPos : NORMAL,
-	float4 col : COLOR,
+	float4 worldPos : COLOR0,
+	float4 col : COLOR1,
 	float2 size : TEXCOORD1
 ) {
 	VS_OUT Out;
 
-	float s = sin(worldPos.z);
-	float c = cos(worldPos.z);
+	float s = sin(worldPos.w);
+	float c = cos(worldPos.w);
 
 	float4x4 world = {
-		c, -s, 0.0f, 0.0f,
-		s, c, 0.0f, 0.0f,
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 1.0f, 0.0f,
-		worldPos.x, worldPos.y, 0.0f, 1.0f };
+		worldPos.x, worldPos.y, worldPos.z, 1.0f };
 
 	Out.pos = TransVertex(float4(pos.x * size.x, pos.y * size.y, 0.0f, 1.0f), world, g_view, g_proj);
 

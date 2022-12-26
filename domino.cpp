@@ -50,6 +50,11 @@ void CDomino::SetCount(int score)
 void CDomino::AddCount()
 {
 	m_count++;
+
+	if (m_count >= 99)
+	{
+		m_count = 99;
+	}
 }
 
 //--------------------------------------------------
