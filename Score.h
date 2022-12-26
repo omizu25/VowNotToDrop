@@ -39,6 +39,7 @@ public:
 
 	//スコアの加算
 	void Addpos() { m_nScore++; };
+	void SetDomino();
 
 	//スコアの設定
 	void Set();

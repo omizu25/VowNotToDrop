@@ -142,14 +142,20 @@
     <ClCompile Include="shield.cpp">
       <Filter>Object\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Ranking.cpp">
-      <Filter>System\Mode</Filter>
-    </ClCompile>
     <ClCompile Include="Score.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="number.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="domino.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ranking_ui.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ranking.cpp">
+      <Filter>System\Mode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -268,14 +274,20 @@
     <ClInclude Include="mesh_field.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Ranking.h">
-      <Filter>System\Mode</Filter>
-    </ClInclude>
     <ClInclude Include="Score.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="number.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="domino.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking_ui.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking.h">
+      <Filter>System\Mode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

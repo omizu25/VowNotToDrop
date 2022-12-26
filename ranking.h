@@ -1,11 +1,11 @@
 //**************************************************
 // 
-// result.h
+// ranking.h
 // Author  : katsuki mizuki
 // 
 //**************************************************
-#ifndef _RESULT_H_	//このマクロ定義がされてなかったら
-#define _RESULT_H_	//２重インクルード防止のマクロ定義
+#ifndef _RANKING_H_	//このマクロ定義がされてなかったら
+#define _RANKING_H_	//２重インクルード防止のマクロ定義
 
 //==================================================
 // インクルード
@@ -15,19 +15,21 @@
 //==================================================
 // 前方宣言
 //==================================================
+class CMenu;
+class CRankingUI;
 
 //==================================================
 // クラス
 //==================================================
-class CResult : public CMode
+class CRanking : public CMode
 {
 	/* 定義 */
 public:
 
 	/* ↓メンバ関数↓ */
 public:
-	CResult();				// デフォルトコンストラクタ
-	~CResult() override;	// デストラクタ
+	CRanking();				// デフォルトコンストラクタ
+	~CRanking() override;	// デストラクタ
 
 public:
 	void Init() override;	// 初期化
@@ -41,6 +43,8 @@ private:
 
 	/* メンバ変数 */
 private:
+	CMenu* m_pMenu;	// メニューの情報
+	CRankingUI* m_pRanking;
 };
 
-#endif // !_RESULT_H_
+#endif // !_RANKING_H_
