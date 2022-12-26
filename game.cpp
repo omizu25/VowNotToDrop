@@ -126,7 +126,14 @@ void CGame::Update()
 	
 	if (pInput->Trigger(KEY_BACK))
 	{
-		CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_RESULT);
+		if (CDomino::GetCount() == 0)
+		{
+			CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RANKING);
+		}
+		else
+		{
+			CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RESULT);
+		}
 	}
 
 	if (pInput->Trigger(KEY_SHOT))
