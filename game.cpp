@@ -81,10 +81,10 @@ void CGame::Init()
 	// áŠQ•¨‚Ì¶¬
 	CObstacleManager::Create();	// ƒvƒŒƒCƒ„[‚Ì¶¬
 
+	CPlayer::CreateAll();
+
 	//‚‚Ì¶¬
 	CShield::CreateAll();
-
-	CPlayer::CreateAll();
 
 	CDomino::SetCount(0);
 
