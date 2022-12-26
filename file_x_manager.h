@@ -22,33 +22,7 @@ public:
 	enum ELabel
 	{
 		LABEL_NONE = -1,	// 使用しない
-		LABEL_Hummar = 0,	// ハンマー
-		LABEL_WoodBox,		// 木箱
-		LABEL_Fish_Tail,	// 魚の尻尾
-		LABEL_Fish_Body,	// 魚の身体
-		LABEL_Angel_Body,				// 天使の体
-		LABEL_Angel_Head,				// 天使の頭
-		LABEL_Angel_RightArmTop,		// 天使の右腕上
-		LABEL_Angel_RightArmBottom,		// 天使の右腕下
-		LABEL_Angel_RightHand,			// 天使の右手
-		LABEL_Angel_LeftArmTop,			// 天使の左腕上
-		LABEL_Angel_LeftArmBottom,		// 天使の左腕下
-		LABEL_Angel_LeftHand,			// 天使の左手
-		LABEL_Angel_RightFootTop,		// 天使の右足上
-		LABEL_Angel_RightFootBottom,	// 天使の右足下
-		LABEL_Angel_RightFoot,			// 天使の右足
-		LABEL_Angel_LeftFootTop,		// 天使の左足上
-		LABEL_Angel_LeftFootBottom,		// 天使の左足下
-		LABEL_Angel_LeftFoot,			// 天使の左足
-		LABEL_Terutreu_Rope,			// てるてるの縄
-		LABEL_Terutreu_Head,			// てるてるの頭
-		LABEL_Terutreu_Body,			// てるてるの体
-		LABEL_Terutreu_Right_ear,		// てるてるの右耳
-		LABEL_Terutreu_Left_ear,		// てるてるの左耳
-		LABEL_Terutreu_Angel_ring,		// てるてるの天使の輪
-		LABEL_Terutreu_Angel_wing,		// てるてるの天使の羽
-		LABEL_Terutreu_Devil_wing,		// てるてるの悪魔の羽
-		LABEL_Terutreu_Morning_koko,	// てるてるの朝ココ
+		LABEL_NeedleBall = 0,	// ハンマー
 		LABEL_MAX
 	};
 

@@ -15,6 +15,8 @@
 #include "fade.h"
 #include "mode.h"
 #include "object3D.h"
+#include "obstacle.h"
+#include "mesh_field.h"
 
 //==================================================
 // 定義
@@ -42,20 +44,11 @@ CGame::~CGame()
 //--------------------------------------------------
 void CGame::Init()
 {
-	{// 背景
-		CObject3D* pObj = CObject3D::Create();
+	// 生成
+	CObstacle::Create();
 
-		D3DXVECTOR3 size = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f);
-
-		// サイズの設定
-		pObj->SetSize(size);
-
-		// 色の設定
-		pObj->SetCol(D3DXCOLOR(0.5f, 0.5f, 0.5f, 1.0f));
-
-		// テクスチャの設定
-		pObj->SetTexture(CTexture::LABEL_NONE);
-	}
+	//メッシュフィールドの生成
+	CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
 }
 
 //--------------------------------------------------
