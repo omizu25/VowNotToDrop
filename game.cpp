@@ -87,7 +87,14 @@ void CGame::Init()
 
 	CDomino::SetCount(0);
 
-	m_pScore = CScore::Create(D3DXVECTOR3(670.0f, 50.0f, 0.0f));
+	//回数カウント(文言)
+	CObject2D* pCount = CObject2D::Create();
+	pCount->SetPos(D3DXVECTOR3(300.0f, 650.0f, 0.0f));
+	pCount->SetSize(D3DXVECTOR3(550.0f, 100.0f, 0.0f));
+	pCount->SetTexture(CTexture::LAVEL_Count);
+
+	//スコア
+	m_pScore = CScore::Create(pCount->GetPos() + D3DXVECTOR3(150.0f, 0.0f, 0.0f));
 	m_pScore->SetScore(0);
 
 	//操作説明(文言)
