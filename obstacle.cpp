@@ -131,8 +131,6 @@ void CObstacle::Update()
 	// 向きの設定
 	CModel::SetRot(rot);
 
-	if (!m_collision)
-	{// 当たってない
 		CInput* pInput = CInput::GetKey();
 
 		int nPopNumber;
@@ -168,12 +166,12 @@ void CObstacle::Update()
 			}
 		}
 
-		if (!InRange(&pos, D3DXVECTOR3(20.0f, 0.0f, 10.0f)))
+		D3DXVECTOR3 ppos(pos.x, pos.y, pos.z - 100.0f);
+		if (!InRange(&ppos, D3DXVECTOR3(30.0f, 0.0f, 20.0f)))
 		{// プレイヤーに当たった
 			CPlayer::AddKill(m_move);
 			CObject::SetRelease();
 		}
-	}
 
 	if (InRange(&pos, D3DXVECTOR3(650.0f, 0.0f, 650.0f)))
 	{// 範囲外に出た
