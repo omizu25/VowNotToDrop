@@ -148,20 +148,25 @@ void CDomino::Update()
 	// 位置の設定
 	CModel::SetPos(pos);
 
-	if (pos.x <= -300.0f)
+	if (pos.x <= -1000.0f)
 	{// 範囲外に出た
 		CObject::SetRelease();
 	}
 
-	if (pos.x >= 0.0f)
+	if (pos.x <= 10.0f + (m_move * -1.0f))
 	{
 		// 位置の取得
 		D3DXVECTOR3 rot = CModel::GetRot();
 
-		rot.x += 0.01f;
+		rot.x += (m_move * -1.0f) * 0.01f;
 
 		// 角度の正規化
 		NormalizeAngle(&rot.x);
+
+		if (rot.x >= D3DX_PI * 0.35f)
+		{
+			rot.x = D3DX_PI * 0.35f;
+		}
 
 		// 位置の設定
 		CModel::SetRot(rot);
