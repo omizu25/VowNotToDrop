@@ -32,6 +32,9 @@ public:
 		LABEL_Number,			// ナンバー画像
 		LABEL_Number_Secret,	// ナンバー秘匿用
 		LABEL_Ranking,			// らんきんぐ
+		LABEL_Restart,			// もういちど
+		LABEL_ReturnToTitle,	// たいとるへ
+		LABEL_RankingBG002,		// ランキング背景
 		LABEL_MAX
 	};
 
