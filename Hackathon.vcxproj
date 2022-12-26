@@ -159,6 +159,8 @@
     <ClCompile Include="directinput.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="fade.cpp" />
+    <ClCompile Include="file_x.cpp" />
+    <ClCompile Include="file_x_manager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="inputcontroller.cpp" />
@@ -168,6 +170,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="mode.cpp" />
+    <ClCompile Include="model.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="object2D.cpp" />
     <ClCompile Include="object3D.cpp" />
@@ -188,6 +191,8 @@
     <ClInclude Include="directinput.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="fade.h" />
+    <ClInclude Include="file_x.h" />
+    <ClInclude Include="file_x_manager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="inputcontroller.h" />
@@ -198,6 +203,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="mode.h" />
+    <ClInclude Include="model.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="object2D.h" />
     <ClInclude Include="object3D.h" />
