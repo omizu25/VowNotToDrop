@@ -59,6 +59,20 @@ void CResult::Init()
 		pObj->SetTexture(CTexture::LAVEL_TATAMI);
 	}
 
+	//和風フレーム
+	CObject2D* pFrame = CObject2D::Create();
+
+	D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f);
+	D3DXVECTOR3 size = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f);
+
+	// 位置の設定
+	pFrame->SetPos(pos);
+
+	//サイズの設定
+	pFrame->SetSize(size);
+
+	//テクスチャの設定
+	pFrame->SetTexture(CTexture::LABEL_Frame_Japan);
 
 	CDomino::CreateAll();
 
