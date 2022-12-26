@@ -36,6 +36,7 @@ public:
 		LABEL_ReturnToTitle,	// たいとるへ
 		LABEL_RankingBG002,		// ランキング背景
 		LABEL_Title_Hackson,	// タイトル背景
+		LABEL_Frame_Japan,		// 和風フレーム
 		LABEL_MAX
 	};
 
