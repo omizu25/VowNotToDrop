@@ -38,7 +38,7 @@ CObject3D* CObject3D::Create()
 	pObject3D->Init();
 
 	// サイズの設定
-	pObject3D->SetSize(D3DXVECTOR3(STD_SIZE, STD_SIZE, 0.0f));
+	pObject3D->SetSize(D3DXVECTOR3(STD_SIZE, 0.0f, STD_SIZE));
 
 	return pObject3D;
 }
@@ -51,8 +51,8 @@ CObject3D::CObject3D(CObject::EPriority prio) : CObject(prio),
 	m_texture(CTexture::LABEL_NONE),
 	m_pos(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
 	m_size(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
-	m_col(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)),
-	m_rot(0.0f)
+	m_rot(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
+	m_col(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f))
 {
 	memset(m_mtxWorld, 0, sizeof(m_mtxWorld));
 }
@@ -72,8 +72,8 @@ void CObject3D::Init()
 {
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	m_rot = 0.0f;
 	m_texture = CTexture::LABEL_NONE;
 
 	// デバイスへのポインタの取得
@@ -151,6 +151,9 @@ void CObject3D::Draw()
 	// デバイスへのポインタの取得
 	LPDIRECT3DDEVICE9 pDevice = CApplication::GetInstance()->GetDevice();
 
+	// ライトを無効にする
+	pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
+
 	// 頂点バッファをデータストリームに設定
 	pDevice->SetStreamSource(0, m_pVtxBuff, 0, sizeof(VERTEX));
 
@@ -162,16 +165,17 @@ void CObject3D::Draw()
 	// テクスチャの設定
 	pDevice->SetTexture(0, pTexture->Get(m_texture));
 
-	D3DXMATRIX mtxTrans;
+	D3DXMATRIX mtxTrans, mtxRot;
 
 	// ワールドマトリックスの初期化
 	D3DXMatrixIdentity(&m_mtxWorld);
 
-	// 回転の反映
-	D3DXMatrixRotationZ(&m_mtxWorld, -m_rot);
+	// 向きを反映
+	D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
+	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
 
 	// 位置の反映
-	D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, 0.0f);
+	D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, m_pos.z);
 	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
 
 	// ワールドマトリックスの設定
@@ -182,6 +186,9 @@ void CObject3D::Draw()
 		D3DPT_TRIANGLESTRIP,	// プリミティブの種類
 		0,						// 描画する最初の頂点インデックス
 		NUM_POLYGON);			// プリミティブ(ポリゴン)数
+
+	// ライトを有効にする
+	pDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
 }
 
 //--------------------------------------------------
@@ -214,12 +221,13 @@ void CObject3D::SetSize(const D3DXVECTOR3& size)
 
 	float width = m_size.x * 0.5f;
 	float height = m_size.y * 0.5f;
+	float depth = m_size.z * 0.5f;
 
 	// 頂点情報の設定
-	pVtx[0].pos = D3DXVECTOR3(-width, +height, 0.0f);
-	pVtx[1].pos = D3DXVECTOR3(+width, +height, 0.0f);
-	pVtx[2].pos = D3DXVECTOR3(-width, -height, 0.0f);
-	pVtx[3].pos = D3DXVECTOR3(+width, -height, 0.0f);
+	pVtx[0].pos = D3DXVECTOR3(-width, +height, +depth);
+	pVtx[1].pos = D3DXVECTOR3(+width, +height, +depth);
+	pVtx[2].pos = D3DXVECTOR3(-width, -height, -depth);
+	pVtx[3].pos = D3DXVECTOR3(+width, -height, -depth);
 
 	// 頂点バッファをアンロックする
 	m_pVtxBuff->Unlock();
@@ -231,6 +239,22 @@ void CObject3D::SetSize(const D3DXVECTOR3& size)
 const D3DXVECTOR3& CObject3D::GetSize() const
 {
 	return m_size;
+}
+
+//--------------------------------------------------
+// 向きの設定
+//--------------------------------------------------
+void CObject3D::SetRot(const D3DXVECTOR3& rot)
+{
+	m_rot = rot;
+}
+
+//--------------------------------------------------
+// 向きの取得
+//--------------------------------------------------
+const D3DXVECTOR3& CObject3D::GetRot() const
+{
+	return m_rot;
 }
 
 //--------------------------------------------------
@@ -261,22 +285,6 @@ void CObject3D::SetCol(const D3DXCOLOR& col)
 const D3DXCOLOR& CObject3D::GetCol() const
 {
 	return m_col;
-}
-
-//--------------------------------------------------
-// 向きの設定
-//--------------------------------------------------
-void CObject3D::SetRot(float rot)
-{
-	m_rot = rot;
-}
-
-//--------------------------------------------------
-// 向きの取得
-//--------------------------------------------------
-float CObject3D::GetRot() const
-{
-	return m_rot;
 }
 
 //--------------------------------------------------

@@ -28,6 +28,9 @@
     <Filter Include="Object\Effect">
       <UniqueIdentifier>{c4da1187-61b6-4284-8569-1e9e06eeff3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Model">
+      <UniqueIdentifier>{15b24148-ffe1-4f1f-93f0-eb6850430def}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="precompile.cpp" />
@@ -99,6 +102,15 @@
     </ClCompile>
     <ClCompile Include="result.cpp">
       <Filter>System\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="file_x.cpp">
+      <Filter>Object\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="file_x_manager.cpp">
+      <Filter>Object\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>Object\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +186,15 @@
     </ClInclude>
     <ClInclude Include="result.h">
       <Filter>System\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="file_x.h">
+      <Filter>Object\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="file_x_manager.h">
+      <Filter>Object\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>Object\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

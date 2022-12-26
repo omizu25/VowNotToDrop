@@ -18,20 +18,22 @@
 //==================================================
 namespace
 {
+const D3DXVECTOR3 STD_POS_V = D3DXVECTOR3(0.0f, 200.0f, -400.0f);	// 基準の視点の位置
 const float MAX_NEAR = 10.0f;		// ニアの最大値
 const float MAX_FAR = 2500.0f;		// ファーの最大値
-const float MAX_DISTANCE = -500.0f;	// 視点の距離の最大値
+const float FIELD_OF_VIEW = D3DXToRadian(45.0f);	// 視野角
+
+// アスペクト比
+const float ASPECT_RATIO = (float)CApplication::SCREEN_WIDTH / (float)CApplication::SCREEN_HEIGHT;
 }
 
 //--------------------------------------------------
 // デフォルトコンストラクタ
 //--------------------------------------------------
 CCamera::CCamera() :
-	m_pos(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
-	m_posDest(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
-	m_vecU(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
-	m_rot(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
-	m_rotDest(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
+	m_posV(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
+	m_posR(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
+	m_vecU(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
 {
 	memset(m_mtxProj, 0, sizeof(m_mtxProj));
 	memset(m_mtxView, 0, sizeof(m_mtxView));
@@ -49,19 +51,16 @@ CCamera::~CCamera()
 //--------------------------------------------------
 void CCamera::Init()
 {
-	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_posDest = m_pos;
+	m_posV = STD_POS_V;
+	m_posR = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);	// 固定
-	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_rotDest = m_rot;
 }
 
 //--------------------------------------------------
 // 終了
 //--------------------------------------------------
 void CCamera::Uninit()
-{
-	
+{	
 }
 
 //--------------------------------------------------
@@ -69,7 +68,6 @@ void CCamera::Uninit()
 //--------------------------------------------------
 void CCamera::Update()
 {
-	m_pos.z = 0.0f;	// これをしないとバグる
 }
 
 //--------------------------------------------------
@@ -80,32 +78,31 @@ void CCamera::Set()
 	// デバイスへのポインタの取得
 	LPDIRECT3DDEVICE9 pDevice = CApplication::GetInstance()->GetDevice();
 
-	// ビューマトリックスの初期化
+	// ビューの初期化
 	D3DXMatrixIdentity(&m_mtxView);
 
-	D3DXVECTOR3 pos = D3DXVECTOR3(m_pos.x, m_pos.y, MAX_DISTANCE);
-
-	// ビューマトリックスの作成
+	// ビューの作成
 	D3DXMatrixLookAtLH(
 		&m_mtxView,
-		&pos,
-		&m_pos,
+		&m_posV,
+		&m_posR,
 		&m_vecU);
 
-	// ビューマトリックスの設定
+	// ビューの設定
 	pDevice->SetTransform(D3DTS_VIEW, &m_mtxView);
 
-	// プロジェクションマトリックスの初期化
+	// プロジェクションの初期化
 	D3DXMatrixIdentity(&m_mtxProj);
 
-	// プロジェクションマトリックスの作成(平行投影)
-	D3DXMatrixOrthoLH(&m_mtxProj,			// プロジェクションマトリックス
-		(float)CApplication::SCREEN_WIDTH,	// 幅
-		(float)CApplication::SCREEN_HEIGHT,	// 高さ
-		MAX_NEAR,							// ニア
-		MAX_FAR);							// ファー
-	
-	// プロジェクションマトリックスの設定
+	// プロジェクションの作成
+	D3DXMatrixPerspectiveFovLH(
+		&m_mtxProj,
+		FIELD_OF_VIEW,
+		ASPECT_RATIO,
+		MAX_NEAR,
+		MAX_FAR);
+
+	// プロジェクションの設定
 	pDevice->SetTransform(D3DTS_PROJECTION, &m_mtxProj);
 }
 
@@ -114,7 +111,7 @@ void CCamera::Set()
 //--------------------------------------------------
 void CCamera::SetPos(const D3DXVECTOR3& pos)
 {
-	m_pos = pos;
+	m_posV = pos;
 }
 
 //--------------------------------------------------
@@ -122,7 +119,7 @@ void CCamera::SetPos(const D3DXVECTOR3& pos)
 //--------------------------------------------------
 const D3DXVECTOR3& CCamera::GetPos() const
 {
-	return m_pos;
+	return m_posV;
 }
 
 //--------------------------------------------------
@@ -140,4 +137,3 @@ const D3DXMATRIX& CCamera::GetView() const
 {
 	return m_mtxView;
 }
-
