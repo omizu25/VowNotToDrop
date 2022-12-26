@@ -76,8 +76,7 @@ void CGame::Update()
 
 	if (pInput->Trigger(KEY_PAUSE))
 	{// PƒL[‚ª‰Ÿ‚³‚ê‚½
-		CPlayer::AddKill();
-		//CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+		CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	}
 	
 	if (pInput->Trigger(KEY_BACK))

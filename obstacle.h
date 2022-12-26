@@ -39,6 +39,9 @@ public:
 	void SetMove(const D3DXVECTOR3& move);	// 移動量の設定
 	const D3DXVECTOR3& GetMove() const;		// 移動量の取得
 
+private:
+	void Shield(const D3DXVECTOR3& pos);	// シールドとの判定
+
 	/* ↓メンバ変数↓ */
 private:
 	D3DXVECTOR3 m_move;	// 移動量
