@@ -36,6 +36,7 @@ const string FILE_PATH[] =
 	"data/TEXTURE/Restart.png",				// ‚à‚¤‚¢‚¿‚Ç
 	"data/TEXTURE/ReturnToTitle.png",		// ‚½‚¢‚Æ‚é‚Ö
 	"data/TEXTURE/RankingBG002.png",		// ƒ‰ƒ“ƒLƒ“ƒO”wŒi
+	"data/TEXTURE/Title_Hackson.png",		// ƒ^ƒCƒgƒ‹”wŒi
 };
 }
 

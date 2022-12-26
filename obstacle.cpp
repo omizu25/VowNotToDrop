@@ -15,6 +15,7 @@
 #include "input.h"
 #include "Score.h"
 #include "domino.h"
+#include "shield.h"
 
 //==================================================
 // 定義
@@ -133,27 +134,47 @@ void CObstacle::Update()
 	{// 当たってない
 		CInput* pInput = CInput::GetKey();
 
-		if (pInput->Press(KEY_LEFT))
-		{// 左
-			Shield(D3DXVECTOR3(-150.0f, 0.0f, 0.0f));
-		}
-		else if (pInput->Press(KEY_RIGHT))
-		{// 右
-			Shield(D3DXVECTOR3(150.0f, 0.0f, 0.0f));
-		}
-		else if (pInput->Press(KEY_DOWN))
-		{// 下
-			Shield(D3DXVECTOR3(0.0f, 0.0f, -150.0f));
+		int nPopNumber;
+		for (int i = 0; i < 3; i++)
+		{
+			nPopNumber = CShield::GetNumPop(i);
+
+			switch (nPopNumber)
+			{
+			case 0:
+				if (pInput->Press(KEY_LEFT))
+				{// 左
+					Shield(D3DXVECTOR3(-150.0f, 0.0f, 100.0f));
+				}
+				break;
+
+			case 1:
+				if (pInput->Press(KEY_RIGHT) && nPopNumber == 1)
+				{// 右
+					Shield(D3DXVECTOR3(150.0f, 0.0f, 100.0f));
+				}
+				break;
+
+			case 2:
+				if (pInput->Press(KEY_DOWN) && nPopNumber == 2)
+				{// 下
+					Shield(D3DXVECTOR3(0.0f, 0.0f, -50.0f));
+				}
+				break;
+
+			default:
+				break;
+			}
 		}
 
-		if (!InRange(&pos, D3DXVECTOR3(10.0f, 0.0f, 10.0f)))
+		if (!InRange(&pos, D3DXVECTOR3(20.0f, 0.0f, 110.0f)))
 		{// プレイヤーに当たった
 			CPlayer::AddKill(m_move);
 			CObject::SetRelease();
 		}
 	}
 
-	if (InRange(&pos, D3DXVECTOR3(550.0f, 0.0f, 550.0f)))
+	if (InRange(&pos, D3DXVECTOR3(650.0f, 0.0f, 650.0f)))
 	{// 範囲外に出た
 		CObject::SetRelease();
 	}

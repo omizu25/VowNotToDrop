@@ -46,15 +46,19 @@ CTitle::~CTitle()
 void CTitle::Init()
 {
 	{// 背景
-		CObject3D* pObj = CObject3D::Create();
+		CObject2D* pObj = CObject2D::Create();
 
+		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f);
 		D3DXVECTOR3 size = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f);
+
+		// 位置の設定
+		pObj->SetPos(pos);
 
 		// サイズの設定
 		pObj->SetSize(size);
 
 		// テクスチャの設定
-		pObj->SetTexture(CTexture::LABEL_NONE);
+		pObj->SetTexture(CTexture::LABEL_Title_Hackson);
 	}
 
 	{// タイトルロゴ
@@ -64,7 +68,7 @@ void CTitle::Init()
 		pObj->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, 250.0f, 0.0f));
 
 		// サイズの設定
-		pObj->SetSize(D3DXVECTOR3(600.0f, 300.0f, 0.0f));
+		pObj->SetSize(D3DXVECTOR3(900.0f, 200.0f, 0.0f));
 
 		// テクスチャの設定
 		pObj->SetTexture(CTexture::LABEL_TitleLogo);
@@ -72,7 +76,7 @@ void CTitle::Init()
 
 	{// メニュー
 		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.75f, 0.0f);
-		D3DXVECTOR3 size = D3DXVECTOR3(450.0f, 100.0f, 0.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3(450.0f, 150.0f, 0.0f);
 
 		// 生成
 		m_pMenu = CMenu::Create(pos, size, 1, 50.0f);
@@ -84,7 +88,7 @@ void CTitle::Init()
 		m_pMenu->SetCursor(D3DXVECTOR3(100.0f, 50.0f, 0.0f), 20.0f);
 
 		// テクスチャの設定
-		m_pMenu->SetTexture(0, CTexture::LABEL_PressEnter);
+		m_pMenu->SetTexture(0, CTexture::LAVEL_PlayStart);
 	}
 
 	//曲の再生
