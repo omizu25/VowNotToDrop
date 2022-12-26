@@ -48,13 +48,17 @@ void CTitle::Init()
 	{// 背景
 		CObject2D* pObj = CObject2D::Create();
 
+		D3DXVECTOR3 pos = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT * 0.5f, 0.0f);
 		D3DXVECTOR3 size = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f);
+
+		// 位置の設定
+		pObj->SetPos(pos);
 
 		// サイズの設定
 		pObj->SetSize(size);
 
 		// テクスチャの設定
-		pObj->SetTexture(CTexture::LABEL_NONE);
+		pObj->SetTexture(CTexture::LABEL_Title_Hackson);
 	}
 
 	{// タイトルロゴ
