@@ -63,11 +63,6 @@ void CDomino::AddMove()
 //--------------------------------------------------
 void CDomino::CreateAll()
 {
-	if (m_count == 0)
-	{
-
-	}
-
 	m_move = 0.0f;
 	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
@@ -76,7 +71,7 @@ void CDomino::CreateAll()
 		// ê∂ê¨
 		CDomino::Create(pos);
 
-		pos.z += 20.0f;
+		pos.z += 50.0f;
 	}
 }
 
@@ -125,7 +120,7 @@ void CDomino::Init()
 	CModel::Init();
 
 	// égópÇ∑ÇÈÉÇÉfÉãÇÃê›íË
-	CModel::SetLabel(CFileXManager::LABEL_BAMBOO);
+	CModel::SetLabel(CFileXManager::LABEL_Hagoita);
 }
 
 //--------------------------------------------------

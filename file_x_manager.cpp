@@ -24,6 +24,7 @@ const string FILE_PATH[] =
 	"data/MODEL/Wing.x",		// 羽根
 	"data/MODEL/Hummer.x",		// ハンマー
 	"data/MODEL/Bamboo.x",		// 門松
+	"data/MODEL/Hagoita.x",		// 羽子板
 };
 }
 
