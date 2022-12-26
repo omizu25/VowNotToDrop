@@ -59,8 +59,8 @@ void CGame::Init()
 {
 	//メッセージの表示
 	{
-		D3DXVECTOR3 pos(640.0f, 360.0f, 0.0f);
-		CMessage::Create(pos, 800.0f, 500.0f);
+		D3DXVECTOR3 pos(640.0f, 250.0f, 0.0f);
+		CMessage::Create(pos, 1200.0f, 300.0f);
 	}
 
 	{// 背景
