@@ -143,18 +143,16 @@ void CObstacleManager::Game()
 
 		m_pop++;
 
-		if (m_pop >= POP_INTERVAL)
+		if ((m_pop % POP_INTERVAL) == 0)
 		{// Å‘å”‚ğ‰z‚µ‚½
 			//m_move += 0.05f;
 
-			m_interval -= 5 + 3 * m_pop;
+			m_interval -= 3 + 2 * m_pop;
 
 			if (m_interval <= MIN_INTERVAL)
 			{// Å¬’lˆÈ‰º
 				m_interval = MIN_INTERVAL;
 			}
-
-			m_pop = 0;
 		}
 	}
 }

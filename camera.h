@@ -37,6 +37,8 @@ private:
 	D3DXVECTOR3 m_posV;		// 視点
 	D3DXVECTOR3 m_posR;		// 注視点
 	D3DXVECTOR3 m_vecU;		// 上方向ベクトル
+	float m_fFogValue;		// フォグの密度
+	float m_fFogDensity;	// フォグ
 };
 
 #endif // !_CAMERA_H_

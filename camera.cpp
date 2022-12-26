@@ -12,6 +12,7 @@
 #include "application.h"
 #include "game.h"
 #include "utility.h"
+#include "domino.h"
 
 //==================================================
 // 定義
@@ -37,6 +38,7 @@ CCamera::CCamera() :
 {
 	memset(m_mtxProj, 0, sizeof(m_mtxProj));
 	memset(m_mtxView, 0, sizeof(m_mtxView));
+	m_fFogValue = 0.0f;
 }
 
 //--------------------------------------------------
@@ -54,6 +56,8 @@ void CCamera::Init()
 	m_posV = STD_POS_V;
 	m_posR = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);	// 固定
+	m_fFogValue = 0.00005f;
+	m_fFogDensity = 0.0f;
 }
 
 //--------------------------------------------------
@@ -104,6 +108,41 @@ void CCamera::Set()
 
 	// プロジェクションの設定
 	pDevice->SetTransform(D3DTS_PROJECTION, &m_mtxProj);
+
+	//--------------------------------
+	// フォグ
+	//--------------------------------
+	//フォグの有効設定
+	pDevice->SetRenderState(D3DRS_FOGENABLE, TRUE);
+
+	//フォグカラーの設定
+	pDevice->SetRenderState(D3DRS_FOGCOLOR, D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
+
+	//フォグモードの設定
+	pDevice->SetRenderState(D3DRS_FOGTABLEMODE, D3DFOG_EXP);	//密度指定
+
+	//----------------------------
+	// 密度指定時の処理
+	//----------------------------
+	int nPop = CDomino::GetCount();
+
+	if (CApplication::GetInstance()->GetModeEnum() == CMode::MODE_GAME)
+	{
+		if (m_fFogDensity <= 0.0022f)
+		{
+			m_fFogDensity = (m_fFogValue * nPop);		//密度(0.001でもかなり真っ白)
+		}
+		else
+		{
+			int a = 0;
+		}
+	}
+	else
+	{
+		m_fFogDensity = 0;
+	}
+
+	pDevice->SetRenderState(D3DRS_FOGDENSITY, *(DWORD*)(&m_fFogDensity));
 }
 
 //--------------------------------------------------

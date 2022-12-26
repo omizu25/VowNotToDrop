@@ -54,6 +54,7 @@ public:
 	void Draw();	// 描画
 
 public:
+	CMode::EMode GetModeEnum();
 	void SetMode(CMode::EMode mode);	// モードの設定
 	LPDIRECT3DDEVICE9 GetDevice();		// デバイスの取得
 	CRenderer* GetRenderer();			// レンダラーの取得
