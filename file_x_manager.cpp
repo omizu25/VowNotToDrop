@@ -18,33 +18,7 @@ namespace
 {
 const string FILE_PATH[] =
 {// テクスチャのパス
-	"data/MODEL/Hammer.x",		// ハンマー
-	"data/MODEL/WoodBox.x",		// 木箱
-	"data/MODEL/Fish_Tail.x",	// 魚の尻尾
-	"data/MODEL/Fish_Body.x",	// 魚の体
-	"data/MODEL/Angel/Body.x",				// 天使の体
-	"data/MODEL/Angel/Head.x",				// 天使の頭
-	"data/MODEL/Angel/RightArmTop.x",		// 天使の右腕上
-	"data/MODEL/Angel/RightArmBottom.x",	// 天使の右腕下
-	"data/MODEL/Angel/RightHand.x",			// 天使の右手
-	"data/MODEL/Angel/LeftArmTop.x",		// 天使の左腕上
-	"data/MODEL/Angel/LeftArmBottom.x",		// 天使の左腕下
-	"data/MODEL/Angel/LeftHand.x",			// 天使の左手
-	"data/MODEL/Angel/RightFootTop.x",		// 天使の右足上
-	"data/MODEL/Angel/RightFootBottom.x",	// 天使の右足下
-	"data/MODEL/Angel/RightFoot.x",			// 天使の右足
-	"data/MODEL/Angel/LeftFootTop.x",		// 天使の左足上
-	"data/MODEL/Angel/LeftFootBottom.x",	// 天使の左足下
-	"data/MODEL/Angel/LeftFoot.x",			// 天使の左足
-	"data/MODEL/Angel/Rope.x",				// てるてるの縄
-	"data/MODEL/Angel/Head.x",				// てるてるの頭
-	"data/MODEL/Angel/Body.x",				// てるてるの体
-	"data/MODEL/Angel/Right_ear.x",			// てるてるの右耳
-	"data/MODEL/Angel/Left_ear.x",			// てるてるの左耳
-	"data/MODEL/Angel/Angel_ring.x",		// てるてるの天使の輪
-	"data/MODEL/Angel/Angel_wing.x",		// てるてるの天使の羽
-	"data/MODEL/Angel/Devil_wing.x",		// てるてるの悪魔の羽
-	"data/MODEL/Angel/Morning_koko.x",		// てるてるの朝ココ
+	"data/MODEL/NeedleBall.x",	// 鉄球
 };
 }
 

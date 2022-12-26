@@ -115,6 +115,9 @@
     <ClCompile Include="obstacle.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
     <ClCompile Include="mesh_field.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -203,9 +206,6 @@
       <Filter>Object\Model</Filter>
     </ClInclude>
     <ClInclude Include="obstacle.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="mesh_field.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
