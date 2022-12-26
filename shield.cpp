@@ -82,7 +82,7 @@ void CShield::Update()
 
 	if (m_index == 0)
 	{
-		if (pInput->Press(KEY_LEFT) && !bPop[1] && !bPop[2])
+		if ((pInput->Press(KEY_LEFT) || pInput->Press(JOYPAD_X)) && !bPop[1] && !bPop[2])
 		{// ¶
 			//ˆÚ“®ˆ—
 			Move(m_index);
@@ -95,7 +95,7 @@ void CShield::Update()
 	}
 	else if (m_index == 1)
 	{
-		if (pInput->Press(KEY_RIGHT) && !bPop[0] && !bPop[2])
+		if ((pInput->Press(KEY_RIGHT) || pInput->Press(JOYPAD_B)) && !bPop[0] && !bPop[2])
 		{// ‰E
 			Move(m_index);
 		}
@@ -106,7 +106,7 @@ void CShield::Update()
 	}
 	else if (m_index == 2)
 	{
-		if (pInput->Press(KEY_DOWN) && !bPop[0] && !bPop[1])
+		if ((pInput->Press(KEY_DOWN) || pInput->Press(JOYPAD_A)) && !bPop[0] && !bPop[1])
 		{// ‰º
 			Move(m_index);
 		}
