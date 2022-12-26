@@ -14,6 +14,8 @@
 #include "fade.h"
 #include "utility.h"
 #include "domino.h"
+#include "application.h"
+#include "sound.h"
 
 //==================================================
 // ’è‹`
@@ -104,6 +106,9 @@ void CPlayer::AddKill(const D3DXVECTOR3& move)
 
 	m_killCount++;
 	m_pPlayer[MAX_PLAYER - m_killCount]->SetMove(move);
+
+	//‹È‚ÌÄ¶
+	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_SE_Hit);
 }
 
 //--------------------------------------------------

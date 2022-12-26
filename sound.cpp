@@ -28,6 +28,9 @@ const SParam PARAM[] =
 	{ "data/BGM/Result.wav", -1 },	// リザルト
 	{ "data/SE/Enter.wav", 0 },		// 決定
 	{ "data/SE/Select.wav", 0 },	// 選択
+	{ "data/SE/daruma001.wav", 0 },	// ガード時
+	{ "data/SE/Hit.wav", 0 },		// 被弾
+
 };
 }
 
