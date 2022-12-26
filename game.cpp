@@ -21,6 +21,8 @@
 #include "message.h"
 #include "player.h"
 #include "shield.h"
+#include "Score.h"
+#include "Ranking.h"
 
 //==================================================
 // ’è‹`
@@ -63,6 +65,9 @@ void CGame::Init()
 
 	//‚‚Ì¶¬
 	CShield::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+	m_pScore = CScore::Create(D3DXVECTOR3(640.0f, 310.0f, 0.0f));
+	m_pScore->SetScore(0);
 }
 
 //--------------------------------------------------
@@ -70,6 +75,11 @@ void CGame::Init()
 //--------------------------------------------------
 void CGame::Uninit()
 {
+	if (m_pScore != nullptr)
+	{
+		m_pScore->Uninit();
+		m_pScore = nullptr;
+	}
 }
 
 //--------------------------------------------------
@@ -81,13 +91,26 @@ void CGame::Update()
 
 	if (pInput->Trigger(KEY_PAUSE))
 	{// PƒL[‚ª‰Ÿ‚³‚ê‚½
-		CPlayer::AddKill();
-		//CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+		CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	}
 	
 	if (pInput->Trigger(KEY_BACK))
 	{
 		CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_RESULT);
+	}
+
+	if (pInput->Trigger(KEY_SHOT))
+	{
+		if (m_pScore != nullptr)
+		{
+			m_pScore->Addpos();
+		}
+	}
+
+	if (m_pScore != nullptr)
+	{
+		m_pScore->Update();
+		CRanking::SetCurrentScore(m_pScore->GetScore());
 	}
 }
 
@@ -96,4 +119,5 @@ void CGame::Update()
 //--------------------------------------------------
 void CGame::Draw()
 {
+	m_pScore->Draw();
 }

@@ -17,8 +17,7 @@
 //==================================================
 namespace
 {
-const int MAX_PLAYER = 3;
-const float POS_Y[MAX_PLAYER] =
+const float POS_Y[CPlayer::MAX_PLAYER] =
 {
 	30.0f,
 	20.0f,
@@ -28,6 +27,7 @@ const float POS_Y[MAX_PLAYER] =
 //==================================================
 // 静的メンバ変数
 //==================================================
+CPlayer* CPlayer::m_pPlayer[CPlayer::MAX_PLAYER] = {};
 int CPlayer::m_killCount = 0;
 
 //--------------------------------------------------
@@ -37,15 +37,15 @@ void CPlayer::CreateAll()
 {
 	for (int i = 0; i < MAX_PLAYER; i++)
 	{
-		CPlayer* pPlayer = CPlayer::Create(i, POS_Y[i]);
+		m_pPlayer[i] = CPlayer::Create(i, POS_Y[i]);
 
 		if (i == 0)
 		{
-			pPlayer->SetLabel(CFileXManager::LABEL_Daruma_Head);
+			m_pPlayer[i]->SetLabel(CFileXManager::LABEL_Daruma_Head);
 		}
 		else
 		{
-			pPlayer->SetLabel(CFileXManager::LABEL_Daruma_Body);
+			m_pPlayer[i]->SetLabel(CFileXManager::LABEL_Daruma_Body);
 		}
 	}
 }
@@ -80,15 +80,22 @@ CPlayer* CPlayer::Create(int index, float posDest)
 //--------------------------------------------------
 // 残機の減算
 //--------------------------------------------------
-void CPlayer::AddKill()
+void CPlayer::AddKill(const D3DXVECTOR3& move)
 {
+	if (m_killCount >= MAX_PLAYER)
+	{
+		return;
+	}
+
 	m_killCount++;
+	m_pPlayer[MAX_PLAYER - m_killCount]->SetMove(move);
 }
 
 //--------------------------------------------------
 // デフォルトコンストラクタ
 //--------------------------------------------------
 CPlayer::CPlayer() :
+	m_move(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
 	m_index(0),
 	m_posDest(0.0f)
 {
@@ -106,6 +113,7 @@ CPlayer::~CPlayer()
 //--------------------------------------------------
 void CPlayer::Init()
 {
+	m_move = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
 	m_posDest = 0.0f;
 	m_index = 0;
 
@@ -131,7 +139,31 @@ void CPlayer::Update()
 
 	if (index >= MAX_PLAYER)
 	{
-		CObject::SetRelease();
+		// 向きの取得
+		D3DXVECTOR3 rot = CModel::GetRot();
+
+		rot.x += -D3DX_PI * 0.25f;
+		rot.y += -D3DX_PI * 0.25f;
+
+		// 角度の正規化
+		NormalizeAngle(&rot.x);
+		NormalizeAngle(&rot.y);
+
+		// 向きの設定
+		CModel::SetRot(rot);
+
+		// 位置の取得
+		D3DXVECTOR3 pos = CModel::GetPos();
+
+		pos += m_move;
+
+		// 位置の設定
+		CModel::SetPos(pos);
+		
+		if (InRange(&pos, D3DXVECTOR3(550.0f, 0.0f, 550.0f)))
+		{// 範囲外に出た
+			CObject::SetRelease();
+		}
 	}
 
 	m_posDest = POS_Y[index];
@@ -152,4 +184,22 @@ void CPlayer::Draw()
 {
 	// 描画
 	CModel::Draw();
+}
+
+//--------------------------------------------------
+// 移動量の設定
+//--------------------------------------------------
+void CPlayer::SetMove(const D3DXVECTOR3& move)
+{
+	m_move = move;
+	m_move *= 5.0f;
+	m_move.y = 10.0f;
+}
+
+//--------------------------------------------------
+// 移動量の取得
+//--------------------------------------------------
+const D3DXVECTOR3& CPlayer::GetMove() const
+{
+	return m_move;
 }

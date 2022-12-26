@@ -140,16 +140,16 @@ bool InRangeReflect(D3DXVECTOR3* pPos, D3DXVECTOR3* pMove, const D3DXVECTOR3& ra
 		out = true;
 	}
 
-	if (pPos->y >= range.y)
+	if (pPos->z >= range.z)
 	{// ã‚Ì•Ç
-		pPos->y = range.y;
-		pMove->y *= -1.0f;
+		pPos->z = range.z;
+		pMove->z *= -1.0f;
 		out = true;
 	}
-	else if (pPos->y <= -range.y)
+	else if (pPos->z <= -range.z)
 	{// ‰º‚Ì•Ç
-		pPos->y = -range.y;
-		pMove->y *= -1.0f;
+		pPos->z = -range.z;
+		pMove->z *= -1.0f;
 		out = true;
 	}
 
@@ -168,7 +168,7 @@ bool CollisionCircle(const D3DXVECTOR3& pos1, float radius1, const D3DXVECTOR3& 
 	float diffX = pos1.x - pos2.x;
 
 	// Y‚Ì·•ª
-	float diffY = pos1.y - pos2.y;
+	float diffY = pos1.z - pos2.z;
 
 	// Œ»Ý‚Ì‚Q“_‚Ì‹——£
 	float length = sqrtf((diffX * diffX) + (diffY * diffY));
@@ -195,7 +195,7 @@ bool CollisionArea(const D3DXVECTOR3& pos1, float radius1, D3DXVECTOR3* pPos2, f
 	float diffX = pos1.x - pPos2->x;
 
 	// Y‚Ì·•ª
-	float diffY = pos1.y - pPos2->y;
+	float diffY = pos1.z - pPos2->z;
 
 	// Œ»Ý‚Ì‚Q“_‚Ì‹——£
 	float length = sqrtf((diffX * diffX) + (diffY * diffY));
@@ -204,7 +204,7 @@ bool CollisionArea(const D3DXVECTOR3& pos1, float radius1, D3DXVECTOR3* pPos2, f
 	{// ‚Q‚Â‚Ì•¨‘Ì‚Ì”¼Œa“¯Žm‚Ì˜a‚æ‚èŒ»Ý‚Ì‚Q“_‚Ì‹——£‚ª¬‚³‚¢‚©‚Ç‚¤‚©
 		float rot = atan2f(diffX, diffY);
 		pPos2->x = pos1.x - (sinf(rot) * radius);
-		pPos2->y = pos1.y - (cosf(rot) * radius);
+		pPos2->z = pos1.z - (cosf(rot) * radius);
 
 		// “–‚½‚Á‚½
 		return true;

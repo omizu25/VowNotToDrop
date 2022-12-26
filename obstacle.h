@@ -22,7 +22,7 @@ public:
 	
 	/* ↓静的メンバ関数↓ */
 public:
-	static CObstacle* Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move);	// 生成
+	static CObstacle* Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move, const D3DXVECTOR3& rot);	// 生成
 
 	/* ↓メンバ関数↓ */
 public:
@@ -39,9 +39,13 @@ public:
 	void SetMove(const D3DXVECTOR3& move);	// 移動量の設定
 	const D3DXVECTOR3& GetMove() const;		// 移動量の取得
 
+private:
+	void Shield(const D3DXVECTOR3& pos);	// シールドとの判定
+
 	/* ↓メンバ変数↓ */
 private:
 	D3DXVECTOR3 m_move;	// 移動量
+	bool m_collision;	// 当たり判定
 };
 
 #endif // !_OBSTACLE_H_
