@@ -158,7 +158,7 @@ void CObstacle::Update()
 			case 2:
 				if (pInput->Press(KEY_DOWN) && nPopNumber == 2)
 				{// ‰º
-					Shield(D3DXVECTOR3(0.0f, 0.0f, -50.0f));
+					Shield(D3DXVECTOR3(0.0f, 0.0f, -70.0f));
 				}
 				break;
 
