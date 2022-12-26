@@ -23,6 +23,7 @@ public:
 		LABEL_TitleLogo,	// タイトルロゴ
 		LABEL_Result,		// リザルト
 		LAVEL_TATAMI,		// 畳
+		LAVEL_PlayStart,	// 遊戯開始
 		LABEL_MAX
 	};
 
