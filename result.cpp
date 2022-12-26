@@ -91,7 +91,7 @@ void CResult::Input()
 {
 	CInput* pInput = CInput::GetKey();
 
-	if (pInput->Trigger(KEY_PAUSE))
+	if (pInput->Trigger(KEY_BACK))
 	{// Pキーが押された
 		// モードの変更
 		CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_RANKING);
