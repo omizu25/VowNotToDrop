@@ -53,7 +53,10 @@ void CScore::Update()
 {
 	if (m_bAddflag == true)
 	{
-		Addpos();
+		if (m_nScore<99)
+		{
+			Addpos();
+		}
 		m_bAddflag = false;
 	}
 	Set();

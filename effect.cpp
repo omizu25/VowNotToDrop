@@ -19,7 +19,7 @@ namespace
 {
 const int MAX_EXPLOSION = 3000;	// 爆発の最大数
 const int MAX_LIFE = 100;		// 寿命の最大値
-const float STD_MOVE = 30.0f;	// 移動量の最大値
+const int STD_MOVE = 45;		// 移動量の最大値
 const float STD_SIZE = 12.0f;	// サイズの標準値
 }
 
@@ -115,7 +115,7 @@ void CEffect::Explosion(const D3DXVECTOR3& pos)
 	D3DXVECTOR3 randomPos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	D3DXCOLOR randomCol = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	float rot = 0.0f;
-	float random = 0.0f;
+	int max = 2 * STD_MOVE;
 
 	for (int i = 0; i < MAX_EXPLOSION; i++)
 	{
@@ -124,11 +124,11 @@ void CEffect::Explosion(const D3DXVECTOR3& pos)
 		// 角度の正規化
 		NormalizeAngle(&rot);
 
-		randomPos = D3DXVECTOR3(sinf(rot), cosf(rot), 0.0f) * FloatRandom(100.0f, -50.0f);
-		random = FloatRandom(STD_MOVE, STD_MOVE * 0.1f);
+		randomPos = D3DXVECTOR3(sinf(rot), cosf(rot), sinf(rot)) * FloatRandom(100.0f, -50.0f);
 
-		move.x = sinf(rot) * random;
-		move.y = cosf(rot) * random;
+		move.x = ((float)(rand() % max) - STD_MOVE);
+		move.y = ((float)(rand() % max) - STD_MOVE);
+		move.z = ((float)(rand() % max) - STD_MOVE);
 
 		randomCol.r = col.r + FloatRandom(0.25f, -0.25f);
 		randomCol.g = col.g + FloatRandom(0.25f, -0.25f);
