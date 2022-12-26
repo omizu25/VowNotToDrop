@@ -124,6 +124,9 @@
     <ClCompile Include="obstacle_manager.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h" />
@@ -218,6 +221,9 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="obstacle_manager.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>

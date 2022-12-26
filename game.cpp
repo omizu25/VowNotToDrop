@@ -17,6 +17,7 @@
 #include "object3D.h"
 #include "obstacle.h"
 #include "obstacle_manager.h"
+#include "player.h"
 
 //==================================================
 // 定義
@@ -56,6 +57,9 @@ void CGame::Init()
 
 	// 障害物の生成
 	CObstacleManager::Create();
+
+	// プレイヤーの生成
+	CPlayer::CreateAll();
 }
 
 //--------------------------------------------------
@@ -74,7 +78,8 @@ void CGame::Update()
 
 	if (pInput->Trigger(KEY_PAUSE))
 	{// Pキーが押された
-		CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+		CPlayer::AddKill();
+		//CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	}
 	
 	if (pInput->Trigger(KEY_BACK))
