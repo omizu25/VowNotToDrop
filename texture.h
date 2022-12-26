@@ -22,6 +22,7 @@ public:
 		LABEL_PressEnter,	// プレスエンター
 		LABEL_TitleLogo,	// タイトルロゴ
 		LABEL_Result,		// リザルト
+		LAVEL_TATAMI,		// 畳
 		LABEL_MAX
 	};
 
