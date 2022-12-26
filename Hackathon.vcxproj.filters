@@ -112,6 +112,9 @@
     <ClCompile Include="model.cpp">
       <Filter>Object\Model</Filter>
     </ClCompile>
+    <ClCompile Include="obstacle.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h" />
@@ -195,6 +198,9 @@
     </ClInclude>
     <ClInclude Include="model.h">
       <Filter>Object\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="obstacle.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
