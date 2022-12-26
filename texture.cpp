@@ -25,6 +25,7 @@ const string FILE_PATH[] =
 	"data/TEXTURE/Result.png",			// リザルト
 	"data/TEXTURE/Tatami.png",			// 畳
 	"data/TEXTURE/Tatami_NoLine.png",	// 畳(線無し)
+	"data/TEXTURE/PlayStart.png"	// 遊戯開始
 };
 }
 

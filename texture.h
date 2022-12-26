@@ -24,6 +24,7 @@ public:
 		LABEL_Result,		// リザルト
 		LAVEL_TATAMI,		// 畳
 		LAVEL_TATAMI_NOLINE,// 畳(線無し)
+		LAVEL_PlayStart,	// 遊戯開始
 		LABEL_MAX
 	};
 
