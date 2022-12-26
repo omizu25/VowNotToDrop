@@ -133,8 +133,6 @@ void CObstacle::Update()
 	// Œü‚«‚Ìİ’è
 	CModel::SetRot(rot);
 
-	if (!m_collision)
-	{// “–‚½‚Á‚Ä‚È‚¢
 		CInput* pInput = CInput::GetKey();
 
 		int nPopNumber;
@@ -170,7 +168,8 @@ void CObstacle::Update()
 			}
 		}
 
-		if (!InRange(&pos, D3DXVECTOR3(20.0f, 0.0f, 110.0f)))
+		D3DXVECTOR3 ppos(pos.x, pos.y, pos.z - 100.0f);
+		if (!InRange(&ppos, D3DXVECTOR3(30.0f, 0.0f, 20.0f)))
 		{// ƒvƒŒƒCƒ„[‚É“–‚½‚Á‚½
 			CPlayer::AddKill(m_move);
 			CObject::SetRelease();
