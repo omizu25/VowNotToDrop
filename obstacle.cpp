@@ -16,6 +16,7 @@
 #include "Score.h"
 #include "domino.h"
 #include "shield.h"
+#include"sound.h"
 
 //==================================================
 // ’è‹`
@@ -220,5 +221,7 @@ void CObstacle::Shield(const D3DXVECTOR3& pos)
 		m_collision = true;
 		CScore::AddFrag();
 		CDomino::AddCount();
+		//‹È‚ÌÄ¶
+		CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_SE_Guard);
 	}
 }

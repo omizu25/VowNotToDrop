@@ -22,6 +22,8 @@ public:
 		LABEL_BGM_Result,		// リザルト
 		LABEL_SE_Enter,			// 決定
 		LABEL_SE_Select,		// 選択
+		LABEL_SE_Guard,			// ガード時
+		LABEL_SE_Hit,			// ヒット時
 		LABEL_MAX,
 	};
 
