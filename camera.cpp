@@ -128,7 +128,7 @@ void CCamera::Set()
 
 	if (CApplication::GetInstance()->GetModeEnum() == CMode::MODE_GAME)
 	{
-		if (m_fFogDensity <= 0.0022f)
+		if (m_fFogDensity <= 0.002f)
 		{
 			m_fFogDensity = (m_fFogValue * nPop);		//–§“x(0.001‚Å‚à‚©‚È‚è^‚Á”’)
 		}
