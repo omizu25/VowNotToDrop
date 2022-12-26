@@ -33,6 +33,9 @@ const string FILE_PATH[] =
 	"data/TEXTURE/Number.png",				// 畳(線無し)
 	"data/TEXTURE/Number_Secret.png",		// ナンバー秘匿用
 	"data/TEXTURE/Ranking.png",				// らんきんぐ
+	"data/TEXTURE/Restart.png",				// もういちど
+	"data/TEXTURE/ReturnToTitle.png",		// たいとるへ
+	"data/TEXTURE/RankingBG002.png",		// ランキング背景
 };
 }
 

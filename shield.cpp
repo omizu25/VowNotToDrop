@@ -18,12 +18,12 @@
 namespace
 {
 const float STD_SPEED = 15.0f;	// 移動量
-const float POP_POS_Y = -100.0f;	// 出現のYの位置
+const float POP_POS_Y = -150.0f;	// 出現のYの位置
 const D3DXVECTOR3 POP_POS[] =
 {// 出現の位置
-	D3DXVECTOR3(-100.0f, POP_POS_Y, 0.0f),
-	D3DXVECTOR3(100.0f, POP_POS_Y, 0.0f),
-	D3DXVECTOR3(0.0f, POP_POS_Y, -100.0f),
+	D3DXVECTOR3(-150.0f, POP_POS_Y, 0.0f),
+	D3DXVECTOR3(150.0f, POP_POS_Y, 0.0f),
+	D3DXVECTOR3(0.0f, POP_POS_Y, -150.0f),
 };
 const D3DXVECTOR3 POP_ROT[] =
 {// 出現の位置
@@ -34,12 +34,19 @@ const D3DXVECTOR3 POP_ROT[] =
 const int POP_MAX = sizeof(POP_POS) / sizeof(POP_POS[0]);	// 出現位置の最大数
 }
 
+//--------------------------------
+// 静的メンバ変数宣言
+//--------------------------------
+bool CShield::bPop[3] = {};
+
 //================================
 // コンストラクタ
 //================================
 CShield::CShield()
 {
-
+	m_defaultPos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//初期位置
+	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);			//向き
+	m_index = 0;	//番号
 }
 
 //================================
@@ -75,71 +82,37 @@ void CShield::Update()
 
 	if (m_index == 0)
 	{
-		if (pInput->Press(KEY_LEFT))
+		if (pInput->Press(KEY_LEFT) && !bPop[1] && !bPop[2])
 		{// 左
-			// 位置の取得
-			D3DXVECTOR3 pos = CModel::GetPos();
-
-			Homing(&pos, pos, D3DXVECTOR3(m_defaultPos.x, 0.0f, m_defaultPos.z), STD_SPEED);
-
-			// 位置の設定
-			CModel::SetPos(pos);
+			//移動処理
+			Move(m_index);
 		}
 		else
 		{
-			// 位置の取得
-			D3DXVECTOR3 pos = CModel::GetPos();
-
-			Homing(&pos, pos, m_defaultPos, STD_SPEED);
-
-			// 位置の設定
-			CModel::SetPos(pos);
+			//移動リセット
+			ResetMove(m_index);
 		}
 	}
 	else if (m_index == 1)
 	{
-		if (pInput->Press(KEY_RIGHT))
+		if (pInput->Press(KEY_RIGHT) && !bPop[0] && !bPop[2])
 		{// 右
-		 // 位置の取得
-			D3DXVECTOR3 pos = CModel::GetPos();
-
-			Homing(&pos, pos, D3DXVECTOR3(m_defaultPos.x, 0.0f, m_defaultPos.z), STD_SPEED);
-
-			// 位置の設定
-			CModel::SetPos(pos);
+			Move(m_index);
 		}
 		else
 		{
-			// 位置の取得
-			D3DXVECTOR3 pos = CModel::GetPos();
-
-			Homing(&pos, pos, m_defaultPos, STD_SPEED);
-
-			// 位置の設定
-			CModel::SetPos(pos);
+			ResetMove(m_index);
 		}
 	}
 	else if (m_index == 2)
 	{
-		if (pInput->Press(KEY_DOWN))
+		if (pInput->Press(KEY_DOWN) && !bPop[0] && !bPop[1])
 		{// 下
-		 // 位置の取得
-			D3DXVECTOR3 pos = CModel::GetPos();
-
-			Homing(&pos, pos, D3DXVECTOR3(m_defaultPos.x, 0.0f, m_defaultPos.z), STD_SPEED);
-
-			// 位置の設定
-			CModel::SetPos(pos);
+			Move(m_index);
 		}
 		else
 		{
-			// 位置の取得
-			D3DXVECTOR3 pos = CModel::GetPos();
-
-			Homing(&pos, pos, m_defaultPos, STD_SPEED);
-
-			// 位置の設定
-			CModel::SetPos(pos);
+			ResetMove(m_index);
 		}
 	}
 
@@ -194,4 +167,44 @@ CShield* CShield::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, int index)
 	}
 
 	return pShield;
+}
+
+//================================
+// 移動処理
+//================================
+void CShield::Move(int index)
+{
+	// 位置の取得
+	D3DXVECTOR3 pos = CModel::GetPos();
+
+	bool bUp = Homing(&pos, pos, D3DXVECTOR3(m_defaultPos.x, 0.0f, m_defaultPos.z), STD_SPEED);
+
+	// 位置の設定
+	CModel::SetPos(pos);
+
+	//出現している状態
+	if (bUp == true)
+	{
+		bPop[index] = true;
+	}
+}
+
+//================================
+// 移動のリセット処理
+//================================
+void CShield::ResetMove(int index)
+{
+	// 位置の取得
+	D3DXVECTOR3 pos = CModel::GetPos();
+
+	bool bDown = Homing(&pos, pos, m_defaultPos, STD_SPEED);
+
+	// 位置の設定
+	CModel::SetPos(pos);
+
+	//出現していない状態
+	if (bDown == true)
+	{
+		bPop[index] = false;
+	}
 }

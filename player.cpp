@@ -78,7 +78,7 @@ CPlayer* CPlayer::Create(int index, float posDest)
 	pPlayer->m_posDest = posDest;
 
 	// ˆÊ’u‚ÌÝ’è
-	pPlayer->SetPos(D3DXVECTOR3(0.0f, posDest, 0.0f));
+	pPlayer->SetPos(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	return pPlayer;
 }

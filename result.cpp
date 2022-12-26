@@ -15,6 +15,7 @@
 #include "mode.h"
 #include "mesh_field.h"
 #include "domino.h"
+#include "menu.h"
 
 //==================================================
 // 定義
@@ -62,7 +63,7 @@ void CResult::Uninit()
 //--------------------------------------------------
 void CResult::Update()
 {
-
+	Input();
 }
 
 //--------------------------------------------------
@@ -77,4 +78,12 @@ void CResult::Draw()
 //--------------------------------------------------
 void CResult::Input()
 {
+	int select = m_pMenu->Select();
+
+	if (select == -1)
+	{// 入力されていない
+		return;
+	}
+	// モードの変更
+	CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_RANKING);
 }
