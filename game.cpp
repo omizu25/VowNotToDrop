@@ -24,6 +24,7 @@
 #include "Score.h"
 #include "ranking_ui.h"
 #include "domino.h"
+#include "sound.h"
 
 //==================================================
 // 定義
@@ -62,8 +63,20 @@ void CGame::Init()
 		CMessage::Create(pos, 800.0f, 500.0f);
 	}
 
+	{// 背景
+		CObject3D* pObj = CObject3D::Create();
+
+		D3DXVECTOR3 size = D3DXVECTOR3(1800.0f, 0.0f, 1800.0f);
+
+		// サイズの設定
+		pObj->SetSize(size);
+
+		// テクスチャの設定
+		pObj->SetTexture(CTexture::LAVEL_TATAMI);
+	}
+
 	//メッシュフィールドの生成
-	CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
+	//CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
 
 	// 障害物の生成
 	CObstacleManager::Create();	// プレイヤーの生成
@@ -88,18 +101,26 @@ void CGame::Init()
 	pIcon->SetPos(pTutorial->GetPos() + D3DXVECTOR3(0.0f, 100.0f, 0.0f));
 	pIcon->SetSize(D3DXVECTOR3(400.0f, 100.0f, 0.0f));
 	pIcon->SetTexture(CTexture::LABEL_Explanation_Icon);
-}
+
+	//曲の再生
+	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Game);}
 
 //--------------------------------------------------
 // 終了
 //--------------------------------------------------
 void CGame::Uninit()
 {
+	//曲の停止
+	CApplication::GetInstance()->GetSound()->Stop();
+
 	if (m_pScore != nullptr)
 	{
 		m_pScore->Uninit();
 		m_pScore = nullptr;
 	}
+
+	// 解放
+	Release();
 }
 
 //--------------------------------------------------

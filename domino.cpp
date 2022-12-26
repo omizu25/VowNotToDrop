@@ -55,7 +55,7 @@ void CDomino::AddCount()
 //--------------------------------------------------
 void CDomino::AddMove()
 {
-	m_move += 0.1f;
+	m_move += -0.1f;
 }
 
 //--------------------------------------------------
@@ -71,7 +71,7 @@ void CDomino::CreateAll()
 		// 生成
 		CDomino::Create(pos);
 
-		pos.z += 50.0f;
+		pos.x += 50.0f;
 	}
 }
 
@@ -119,6 +119,9 @@ void CDomino::Init()
 	// 初期化
 	CModel::Init();
 
+	// 向きの設定
+	CModel::SetRot(D3DXVECTOR3(0.0f, D3DX_PI * 0.5f ,0.0f));
+
 	// 使用するモデルの設定
 	CModel::SetLabel(CFileXManager::LABEL_Hagoita);
 }
@@ -140,9 +143,28 @@ void CDomino::Update()
 	// 位置の取得
 	D3DXVECTOR3 pos = CModel::GetPos();
 
-	if (pos.z <= -300.0f)
+	pos.x += m_move;
+
+	// 位置の設定
+	CModel::SetPos(pos);
+
+	if (pos.x <= -300.0f)
 	{// 範囲外に出た
 		CObject::SetRelease();
+	}
+
+	if (pos.x >= 0.0f)
+	{
+		// 位置の取得
+		D3DXVECTOR3 rot = CModel::GetRot();
+
+		rot.x += 0.01f;
+
+		// 角度の正規化
+		NormalizeAngle(&rot.x);
+
+		// 位置の設定
+		CModel::SetRot(rot);
 	}
 
 	// 更新
