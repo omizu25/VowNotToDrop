@@ -11,11 +11,14 @@
 #include "result.h"
 #include "input.h"
 #include "application.h"
+#include "instancing.h"
 #include "fade.h"
 #include "mode.h"
 #include "mesh_field.h"
 #include "domino.h"
 #include "menu.h"
+#include "result.h"
+#include "sound.h"
 
 //==================================================
 // ’è‹`
@@ -47,6 +50,9 @@ void CResult::Init()
 	CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
 
 	CDomino::CreateAll();
+
+	//‹È‚ÌÄ¶
+	//CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Result);
 }
 
 //--------------------------------------------------

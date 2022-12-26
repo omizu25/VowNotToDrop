@@ -24,6 +24,7 @@
 #include "Score.h"
 #include "ranking_ui.h"
 #include "domino.h"
+#include "sound.h"
 
 //==================================================
 // ’è‹`
@@ -76,6 +77,9 @@ void CGame::Init()
 
 	m_pScore = CScore::Create(D3DXVECTOR3(670.0f, 50.0f, 0.0f));
 	m_pScore->SetScore(0);
+
+	//‹È‚ÌÄ¶
+	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Game);
 }
 
 //--------------------------------------------------
@@ -83,6 +87,9 @@ void CGame::Init()
 //--------------------------------------------------
 void CGame::Uninit()
 {
+	//‹È‚Ì’âŽ~
+	CApplication::GetInstance()->GetSound()->Stop();
+
 	if (m_pScore != nullptr)
 	{
 		m_pScore->Uninit();
