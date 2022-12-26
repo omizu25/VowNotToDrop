@@ -115,6 +115,9 @@
     <ClCompile Include="obstacle.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h" />
@@ -201,6 +204,9 @@
     </ClInclude>
     <ClInclude Include="obstacle.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

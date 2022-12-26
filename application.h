@@ -18,6 +18,7 @@
 class CRenderer;
 class CSound;
 class CTexture;
+class CFileXManager;
 class CInstancing;
 class CFade;
 
@@ -58,19 +59,21 @@ public:
 	CRenderer* GetRenderer();			// レンダラーの取得
 	CSound* GetSound();					// サウンドの取得
 	CTexture* GetTexture();				// テクスチャの取得
+	CFileXManager* GetFileXManager();	// Xファイルの情報のまとまりの取得
 	CInstancing* GetInstancing();		// インスタンシングの取得
 	CMode* GetMode();					// モードの取得
 	CFade* GetFade();					// フェードの取得
 
 	/* ↓メンバ変数↓ */
 private:
-	CMode::EMode m_mode;		// 現在のモード
-	CRenderer* m_pRenderer;		// レンダラーの情報
-	CSound* m_pSound;			// サウンドの情報
-	CTexture* m_pTexture;		// テクスチャの情報
-	CInstancing* m_pInstancing;	// インスタンシングの情報
-	CMode* m_pMode;				// モードの情報
-	CFade* m_pFade;				// フェードの情報
+	CMode::EMode m_mode;			// 現在のモード
+	CRenderer* m_pRenderer;			// レンダラーの情報
+	CSound* m_pSound;				// サウンドの情報
+	CTexture* m_pTexture;			// テクスチャの情報
+	CFileXManager* m_pFileXManager;	// Xファイルの情報のまとまり
+	CInstancing* m_pInstancing;		// インスタンシングの情報
+	CMode* m_pMode;					// モードの情報
+	CFade* m_pFade;					// フェードの情報
 };
 
 #endif // !_APPLICATION_H_

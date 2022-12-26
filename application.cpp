@@ -17,6 +17,8 @@
 #include "camera.h"
 #include "mode.h"
 #include "fade.h"
+#include "light.h"
+#include "file_x_manager.h"
 #include "instancing.h"
 
 //==================================================
@@ -53,6 +55,7 @@ CApplication::CApplication() :
 	m_pRenderer(nullptr),
 	m_pSound(nullptr),
 	m_pTexture(nullptr),
+	m_pFileXManager(nullptr),
 	m_pInstancing(nullptr),
 	m_pMode(nullptr),
 	m_pFade(nullptr)
@@ -67,6 +70,7 @@ CApplication::~CApplication()
 	assert(m_pFade == nullptr);
 	assert(m_pMode == nullptr);
 	assert(m_pInstancing == nullptr);
+	assert(m_pFileXManager == nullptr);
 	assert(m_pTexture == nullptr);
 	assert(m_pSound == nullptr);
 	assert(m_pRenderer == nullptr);
@@ -117,6 +121,13 @@ HRESULT CApplication::Init(HINSTANCE hInstance, HWND hWnd)
 		assert(m_pTexture != nullptr);
 	}
 
+	{// Xファイルの情報のまとまり
+		m_pFileXManager = new CFileXManager;
+
+		// nullチェック
+		assert(m_pFileXManager != nullptr);
+	}
+
 	{// インスタンシング
 		m_pInstancing = new CInstancing;
 
@@ -136,6 +147,9 @@ HRESULT CApplication::Init(HINSTANCE hInstance, HWND hWnd)
 		// 初期化
 		m_pFade->Init();
 	}
+
+	// ライトの生成
+	CLight::CreateAll();
 
 	m_mode = START_MODE;
 
@@ -158,6 +172,9 @@ void CApplication::Uninit()
 
 	m_pMode = nullptr;
 
+	// ライトの解放
+	CLight::ReleaseAll();
+
 	if (m_pFade != nullptr)
 	{// nullチェック
 		m_pFade->Uninit();
@@ -169,6 +186,13 @@ void CApplication::Uninit()
 		m_pInstancing->Uninit();
 		delete m_pInstancing;
 		m_pInstancing = nullptr;
+	}
+
+	if (m_pFileXManager != nullptr)
+	{// nullチェック
+		m_pFileXManager->ReleaseAll();
+		delete m_pFileXManager;
+		m_pFileXManager = nullptr;
 	}
 
 	if (m_pTexture != nullptr)
@@ -267,6 +291,14 @@ CSound* CApplication::GetSound()
 CTexture* CApplication::GetTexture()
 {
 	return m_pTexture;
+}
+
+//--------------------------------------------------
+// Xファイルの情報のまとまりの取得
+//--------------------------------------------------
+CFileXManager* CApplication::GetFileXManager()
+{
+	return m_pFileXManager;
 }
 
 //--------------------------------------------------

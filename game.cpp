@@ -15,6 +15,7 @@
 #include "fade.h"
 #include "mode.h"
 #include "object3D.h"
+#include "obstacle.h"
 
 //==================================================
 // 定義
@@ -45,17 +46,15 @@ void CGame::Init()
 	{// 背景
 		CObject3D* pObj = CObject3D::Create();
 
-		D3DXVECTOR3 size = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f);
-
-		// サイズの設定
-		pObj->SetSize(size);
-
 		// 色の設定
 		pObj->SetCol(D3DXCOLOR(0.5f, 0.5f, 0.5f, 1.0f));
 
 		// テクスチャの設定
 		pObj->SetTexture(CTexture::LABEL_NONE);
 	}
+
+	// 生成
+	CObstacle::Create();
 }
 
 //--------------------------------------------------
