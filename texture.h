@@ -16,6 +16,19 @@ class CTexture
 public:
 	enum ELabel
 	{
+		LABEL_NONE = -1,		// 使用しない
+		LABEL_Effect = 0,		// エフェクト
+		LABEL_Cursor,			// カーソル
+		LABEL_PressEnter,		// プレスエンター
+		LABEL_TitleLogo,		// タイトルロゴ
+		LABEL_Result,			// リザルト
+		LAVEL_TATAMI,			// 畳
+		LAVEL_TATAMI_NOLINE,	// 畳(線無し)
+		LAVEL_PlayStart,		// 遊戯開始
+		LAVEL_Tutorial,			// 達磨を護れ！
+		LAVEL_Count,			//「護った回数　回」
+		LABEL_Explanation,		// 操作説明(文言)
+		LABEL_Explanation_Icon,	// 操作説明(アイコン)
 		LABEL_NONE = -1,	// 使用しない
 		LABEL_Effect = 0,	// エフェクト
 		LABEL_Cursor,		// カーソル

@@ -1,50 +1,49 @@
 //**************************************************
 // 
-// obstacle.h
+// obstacle_manager.h
 // Author  : katsuki mizuki
 // 
 //**************************************************
-#ifndef _OBSTACLE_H_	//このマクロ定義がされてなかったら
-#define _OBSTACLE_H_	//２重インクルード防止のマクロ定義
+#ifndef _OBSTACLE_MANAGER_H_	// このマクロ定義がされてなかったら
+#define _OBSTACLE_MANAGER_H_	// 二重インクルード防止のマクロ定義
 
 //==================================================
 // インクルード
 //==================================================
-#include "model.h"
+#include "object.h"
 
 //==================================================
 // クラス
 //==================================================
-class CObstacle : public CModel
+class CObstacleManager : public CObject
 {
 	/* ↓定義↓ */
-public:
+private:
 	
 	/* ↓静的メンバ関数↓ */
 public:
-	static CObstacle* Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move);	// 生成
+	static CObstacleManager* Create();	// 生成
 
 	/* ↓メンバ関数↓ */
 public:
-	CObstacle();			// デフォルトコンストラクタ
-	~CObstacle() override;	// デストラクタ
+	CObstacleManager();				// デフォルトコンストラクタ
+	~CObstacleManager() override;	// デストラクタ
 
-public: 
+public:
 	void Init() override;	// 初期化
 	void Uninit() override;	// 終了
 	void Update() override;	// 更新
 	void Draw() override;	// 描画
 
-public:
-	void SetMove(const D3DXVECTOR3& move);	// 移動量の設定
-	const D3DXVECTOR3& GetMove() const;		// 移動量の取得
-
 private:
-	void Shield(const D3DXVECTOR3& pos);	// シールドとの判定
+	void Game();	// ゲーム
 
 	/* ↓メンバ変数↓ */
 private:
-	D3DXVECTOR3 m_move;	// 移動量
+	int m_time;		// 時間
+	int m_pop;		// 出現数
+	int m_interval;	// 間隔
+	float m_move;	// 移動量
 };
 
-#endif // !_OBSTACLE_H_
+#endif // !_OBSTACLE_MANAGER_H_
