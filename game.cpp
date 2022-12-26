@@ -17,6 +17,8 @@
 #include "object3D.h"
 #include "obstacle.h"
 #include "mesh_field.h"
+#include "Score.h"
+#include "Ranking.h"
 
 //==================================================
 // 定義
@@ -49,6 +51,9 @@ void CGame::Init()
 
 	//メッシュフィールドの生成
 	CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
+
+	m_pScore = CScore::Create(D3DXVECTOR3(640.0f, 310.0f, 0.0f));
+	m_pScore->SetScore(0);
 }
 
 //--------------------------------------------------
@@ -56,6 +61,11 @@ void CGame::Init()
 //--------------------------------------------------
 void CGame::Uninit()
 {
+	if (m_pScore != nullptr)
+	{
+		m_pScore->Uninit();
+		m_pScore = nullptr;
+	}
 }
 
 //--------------------------------------------------
@@ -74,6 +84,20 @@ void CGame::Update()
 	{
 		CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_RESULT);
 	}
+
+	if (pInput->Trigger(KEY_SHOT))
+	{
+		if (m_pScore != nullptr)
+		{
+			m_pScore->Addpos();
+		}
+	}
+
+	if (m_pScore != nullptr)
+	{
+		m_pScore->Update();
+		CRanking::SetCurrentScore(m_pScore->GetScore());
+	}
 }
 
 //--------------------------------------------------
@@ -81,4 +105,5 @@ void CGame::Update()
 //--------------------------------------------------
 void CGame::Draw()
 {
+	m_pScore->Draw();
 }

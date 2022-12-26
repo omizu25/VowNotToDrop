@@ -121,6 +121,15 @@
     <ClCompile Include="mesh_field.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Ranking.cpp">
+      <Filter>System\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="number.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h" />
@@ -206,6 +215,21 @@
       <Filter>Object\Model</Filter>
     </ClInclude>
     <ClInclude Include="obstacle.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh_field.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranking.h">
+      <Filter>System\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="number.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>

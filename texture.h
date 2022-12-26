@@ -24,6 +24,7 @@ public:
 		LABEL_Result,		// ƒŠƒUƒ‹ƒg
 		LAVEL_TATAMI,		// ô
 		LAVEL_TATAMI_NOLINE,// ô(ü–³‚µ)
+		LABEL_Score_Number,// ô(ü–³‚µ)
 		LABEL_MAX
 	};
 

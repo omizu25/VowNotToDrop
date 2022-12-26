@@ -25,6 +25,8 @@ const string FILE_PATH[] =
 	"data/TEXTURE/Result.png",			// ƒŠƒUƒ‹ƒg
 	"data/TEXTURE/Tatami.png",			// ô
 	"data/TEXTURE/Tatami_NoLine.png",	// ô(ü–³‚µ)
+	"data/TEXTURE/Number.png",	// ô(ü–³‚µ)
+
 };
 }
 
