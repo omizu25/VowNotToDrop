@@ -36,12 +36,21 @@ public:
 	static CShield* Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, int index);
 
 private:
+	void Move(int index);		//移動
+	void ResetMove(int index);	//移動リセット
+
+private:
 	//------------------
 	// メンバ変数
 	//------------------
 	D3DXVECTOR3 m_defaultPos;	//初期位置
 	D3DXVECTOR3 m_rot;			//向き
 	int m_index;				//番号
+
+	//------------------
+	// 静的メンバ変数
+	//------------------
+	static bool bPop[3];	//出現状態
 };
 
 #endif
