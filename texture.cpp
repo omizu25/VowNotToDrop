@@ -36,6 +36,8 @@ const string FILE_PATH[] =
 	"data/TEXTURE/Restart.png",				// もういちど
 	"data/TEXTURE/ReturnToTitle.png",		// たいとるへ
 	"data/TEXTURE/RankingBG002.png",		// ランキング背景
+	"data/TEXTURE/Title_Hackson.png",		// タイトル背景
+	"data/TEXTURE/Frame_Japan.png",			// 和風フレーム
 };
 }
 

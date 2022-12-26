@@ -21,9 +21,9 @@ const float STD_SPEED = 15.0f;	// 移動量
 const float POP_POS_Y = -150.0f;	// 出現のYの位置
 const D3DXVECTOR3 POP_POS[] =
 {// 出現の位置
-	D3DXVECTOR3(-150.0f, POP_POS_Y, 0.0f),
-	D3DXVECTOR3(150.0f, POP_POS_Y, 0.0f),
-	D3DXVECTOR3(0.0f, POP_POS_Y, -150.0f),
+	D3DXVECTOR3(-150.0f, POP_POS_Y, 100.0f),
+	D3DXVECTOR3(150.0f, POP_POS_Y, 100.0f),
+	D3DXVECTOR3(0.0f, POP_POS_Y, 0.0f),
 };
 const D3DXVECTOR3 POP_ROT[] =
 {// 出現の位置

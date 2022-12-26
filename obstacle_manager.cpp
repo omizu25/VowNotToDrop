@@ -16,22 +16,21 @@
 //==================================================
 namespace
 {
-const int MIN_INTERVAL = 60;	// 間隔の最小値
-const int MAX_INTERVAL = 180;	// 間隔の最大値
-const int POP_INCREASE = 1200;	// 出現が増える
+const int MIN_INTERVAL = 5;		// 間隔の最小値
+const int MAX_INTERVAL = 120;	// 間隔の最大値
 const int POP_INTERVAL = 4;		// 出現の最大数
 const float POP_POS_Y = 10.0f;	// 出現のYの位置
 const D3DXVECTOR3 POP_POS[] =
 {// 出現の位置
-	D3DXVECTOR3(-500.0f, POP_POS_Y, 0.0f),
+	D3DXVECTOR3(-600.0f, POP_POS_Y, 100.0f),
 	D3DXVECTOR3(   0.0f, POP_POS_Y, -500.0f),
-	D3DXVECTOR3( 500.0f, POP_POS_Y, 0.0f),
+	D3DXVECTOR3( 600.0f, POP_POS_Y, 100.0f),
 };
 const D3DXVECTOR3 MOVE[] =
 {// 出現の位置
-	D3DXVECTOR3( 3.0f, 0.0f, 0.0f),
-	D3DXVECTOR3( 0.0f, 0.0f, 3.0f),
-	D3DXVECTOR3(-3.0f, 0.0f, 0.0f),
+	D3DXVECTOR3( 6.0f, 0.0f, 0.0f),
+	D3DXVECTOR3( 0.0f, 0.0f, 6.0f),
+	D3DXVECTOR3(-6.0f, 0.0f, 0.0f),
 };
 const D3DXVECTOR3 POP_ROT[] =
 {// 出現の位置
@@ -131,17 +130,14 @@ void CObstacleManager::Game()
 		{// 最大数を越した
 			
 		}
-	}
 
-	if (m_time % POP_INCREASE == 0)
-	{// 一定間隔
 		m_pop++;
 
 		if (m_pop >= POP_INTERVAL)
 		{// 最大数を越した
 			m_move += 0.05f;
 
-			m_interval--;
+			m_interval -= 10;
 
 			if (m_interval <= MIN_INTERVAL)
 			{// 最小値以下

@@ -192,7 +192,7 @@ void CPlayer::Update()
 		// à íuÇÃéÊìæ
 		D3DXVECTOR3 pos = CModel::GetPos();
 
-		Homing(&pos, pos, D3DXVECTOR3(0.0f, m_posDest, 0.0f), 1.0f);
+		Homing(&pos, pos, D3DXVECTOR3(0.0f, m_posDest, 0.0f), 3.0f);
 
 		// à íuÇÃê›íË
 		CModel::SetPos(pos);
