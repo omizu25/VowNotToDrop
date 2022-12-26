@@ -16,6 +16,7 @@
 #include "mode.h"
 #include "object3D.h"
 #include "obstacle.h"
+#include "obstacle_manager.h"
 
 //==================================================
 // íËã`
@@ -53,8 +54,8 @@ void CGame::Init()
 		pObj->SetTexture(CTexture::LABEL_NONE);
 	}
 
-	// ê∂ê¨
-	CObstacle::Create();
+	// è·äQï®ÇÃê∂ê¨
+	CObstacleManager::Create();
 }
 
 //--------------------------------------------------

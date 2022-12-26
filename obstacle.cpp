@@ -10,6 +10,7 @@
 //==================================================
 #include "obstacle.h"
 #include "application.h"
+#include "utility.h"
 
 //==================================================
 // ’è‹`
@@ -22,7 +23,7 @@ const CFileXManager::ELabel MODEL_PATH = CFileXManager::LABEL_NeedleBall;	// ƒtƒ
 //--------------------------------------------------
 // ¶¬
 //--------------------------------------------------
-CObstacle* CObstacle::Create()
+CObstacle* CObstacle::Create(const D3DXVECTOR3& pos, const D3DXVECTOR3& move)
 {
 	CObstacle* pObstacle = new CObstacle;
 
@@ -34,6 +35,12 @@ CObstacle* CObstacle::Create()
 
 	// ‰Šú‰»
 	pObstacle->Init();
+
+	// ˆÊ’u‚Ìİ’è
+	pObstacle->SetPos(pos);
+
+	// ˆÚ“®—Ê‚Ìİ’è
+	pObstacle->SetMove(move);
 
 	return pObstacle;
 }
@@ -63,9 +70,6 @@ void CObstacle::Init()
 	// ‰Šú‰»
 	CModel::Init();
 
-	// ˆÊ’u‚Ìİ’è
-	CModel::SetPos(D3DXVECTOR3(0.0f, 10.0f, 0.0f));
-
 	// g—p‚·‚éƒ‚ƒfƒ‹‚Ìİ’è
 	CModel::SetLabel(MODEL_PATH);
 
@@ -87,9 +91,18 @@ void CObstacle::Uninit()
 //--------------------------------------------------
 void CObstacle::Update()
 {
+	// ˆÊ’u‚Ìæ“¾
 	D3DXVECTOR3 pos = CModel::GetPos();
+
 	pos += m_move;
-CModel::SetPos(pos);
+
+	// ˆÊ’u‚Ìİ’è
+	CModel::SetPos(pos);
+
+	if (InRange(&pos, D3DXVECTOR3(550.0f, 0.0f, 550.0f)))
+	{// ”ÍˆÍŠO‚Éo‚½
+		CObject::SetRelease();
+	}
 
 	// XV
 	CModel::Update();
@@ -105,4 +118,20 @@ void CObstacle::Draw()
 {
 	// •`‰æ
 	CModel::Draw();
+}
+
+//--------------------------------------------------
+// ˆÚ“®—Ê‚Ìİ’è
+//--------------------------------------------------
+void CObstacle::SetMove(const D3DXVECTOR3& move)
+{
+	m_move = move;
+}
+
+//--------------------------------------------------
+// ˆÚ“®—Ê‚Ìæ“¾
+//--------------------------------------------------
+const D3DXVECTOR3& CObstacle::GetMove() const
+{
+	return m_move;
 }
