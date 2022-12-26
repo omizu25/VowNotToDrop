@@ -21,14 +21,16 @@ class CFileXManager
 public:
 	enum ELabel
 	{
-		LABEL_NONE = -1,		// 使用しない
-		LABEL_NeedleBall = 0,	// 鉄球
-		LABEL_Daruma_Head,		// ダルマの頭
-		LABEL_Daruma_Body,		// ダルマの身体
-		LABEL_WING,				// 羽根
-		LABEL_HUMMER,			// ハンマー
-		LABEL_BAMBOO,			// 門松
-		LABEL_Hagoita,			// 羽子板
+		LABEL_NONE = -1,			// 使用しない
+		LABEL_NeedleBall = 0,		// 鉄球
+		LABEL_Daruma_Head,			// ダルマの頭
+		LABEL_Daruma_Body,			// ダルマの身体
+		LABEL_Daruma_Body_Orange,	// ダルマの身体(オレンジ)
+		LABEL_Daruma_Body_Yellow,	// ダルマの身体(イエロー)
+		LABEL_WING,					// 羽根
+		LABEL_HUMMER,				// ハンマー
+		LABEL_BAMBOO,				// 門松
+		LABEL_Hagoita,				// 羽子板
 		LABEL_MAX
 	};
 

@@ -18,13 +18,15 @@ namespace
 {
 const string FILE_PATH[] =
 {// テクスチャのパス
-	"data/MODEL/NeedleBall.x",	// 鉄球
-	"data/MODEL/Daruma_Head.x",	// ダルマの頭
-	"data/MODEL/Daruma_Body.x",	// ダルマの身体
-	"data/MODEL/Wing.x",		// 羽根
-	"data/MODEL/Hummer.x",		// ハンマー
-	"data/MODEL/Bamboo.x",		// 門松
-	"data/MODEL/Hagoita.x",		// 羽子板
+	"data/MODEL/NeedleBall.x",			// 鉄球
+	"data/MODEL/Daruma_Head.x",			// ダルマの頭
+	"data/MODEL/Daruma_Body.x",			// ダルマの身体
+	"data/MODEL/Daruma_Body_Orange.x",	// ダルマの身体(オレンジ)
+	"data/MODEL/Daruma_Body_Yellow.x",	// ダルマの身体(イエロー)
+	"data/MODEL/Wing.x",				// 羽根
+	"data/MODEL/Hummer.x",				// ハンマー
+	"data/MODEL/Bamboo.x",				// 門松
+	"data/MODEL/Hagoita.x",				// 羽子板
 };
 }
 
