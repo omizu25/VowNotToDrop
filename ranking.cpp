@@ -44,29 +44,17 @@ CRanking::~CRanking()
 //--------------------------------------------------
 void CRanking::Init()
 {
-	{// 背景
-		CObject3D* pObj = CObject3D::Create();
-
-		D3DXVECTOR3 size = D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f);
-
-		// サイズの設定
-		pObj->SetSize(size);
-
-		// テクスチャの設定
-		pObj->SetTexture(CTexture::LABEL_NONE);
-	}
-
 	{// タイトルロゴ
 		CObject2D* pObj = CObject2D::Create();
 
 		// 位置の設定
-		pObj->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, 250.0f, 0.0f));
+		pObj->SetPos(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH * 0.5f, (float)CApplication::SCREEN_HEIGHT*0.5f, 0.0f));
 
 		// サイズの設定
-		pObj->SetSize(D3DXVECTOR3(600.0f, 300.0f, 0.0f));
+		pObj->SetSize(D3DXVECTOR3((float)CApplication::SCREEN_WIDTH, (float)CApplication::SCREEN_HEIGHT, 0.0f));
 
 		// テクスチャの設定
-		pObj->SetTexture(CTexture::LABEL_Result);
+		pObj->SetTexture(CTexture::LABEL_RankingBG002);
 	}
 
 	{// メニュー

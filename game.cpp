@@ -120,6 +120,7 @@ void CGame::Update()
 		{
 			m_pScore->Addpos();
 		}
+		CDomino::AddCount();
 	}
 
 	if (m_pScore != nullptr)
