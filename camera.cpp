@@ -132,10 +132,6 @@ void CCamera::Set()
 		{
 			m_fFogDensity = (m_fFogValue * nPop);		//ñßìx(0.001Ç≈Ç‡Ç©Ç»ÇËê^Ç¡îí)
 		}
-		else
-		{
-			int a = 0;
-		}
 	}
 	else
 	{

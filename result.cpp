@@ -48,15 +48,16 @@ CResult::~CResult()
 void CResult::Init()
 {
 	{// 背景
-		CObject3D* pObj = CObject3D::Create();
+		m_pObj = CObject3D::Create();
 
-		D3DXVECTOR3 size = D3DXVECTOR3(1800.0f, 0.0f, 1800.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3(26000.0f, 0.0f, 1800.0f);
+		m_pObj->SetPos(D3DXVECTOR3(320.0f, 0.0f, 0.0f));
 
 		// サイズの設定
-		pObj->SetSize(size);
+		m_pObj->SetSize(size);
 
 		// テクスチャの設定
-		pObj->SetTexture(CTexture::LAVEL_TATAMI);
+		m_pObj->SetTexture(CTexture::LAVEL_TATAMI);
 	}
 
 	//和風フレーム
@@ -98,6 +99,12 @@ void CResult::Uninit()
 void CResult::Update()
 {
 	CDomino::AddMove();
+
+	D3DXVECTOR3 pos = m_pObj->GetPos();
+
+	pos.x += CDomino::GetMove();
+
+	m_pObj->SetPos(pos);
 }
 
 //--------------------------------------------------

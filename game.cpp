@@ -69,7 +69,9 @@ void CGame::Init()
 	{// ”wŒi
 		CObject3D* pObj = CObject3D::Create();
 
-		D3DXVECTOR3 size = D3DXVECTOR3(1800.0f, 0.0f, 1800.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3(26000.0f, 0.0f, 1800.0f);
+
+		pObj->SetPos(D3DXVECTOR3(320.0f, 0.0f, 0.0f));
 
 		// ƒTƒCƒY‚ÌÝ’è
 		pObj->SetSize(size);

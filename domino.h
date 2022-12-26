@@ -30,6 +30,7 @@ public:
 	static int GetCount();	// æ“¾
 	static void SetCount(int score);	// İ’è
 	static void AddCount();	// ‰ÁZ
+	static float GetMove();
 	static void AddMove();		// ‘¬“x‚Ì‰ÁZ
 	static void CreateAll();	// ‘S‚Ä‚Ì¶¬
 	static CDomino* Create(const D3DXVECTOR3& pos);	// ¶¬
