@@ -18,7 +18,7 @@
 //==================================================
 namespace
 {
-const D3DXVECTOR3 STD_POS_V = D3DXVECTOR3(0.0f, 200.0f, -400.0f);	// 基準の視点の位置
+const D3DXVECTOR3 STD_POS_V = D3DXVECTOR3(0.0f, 500.0f, -350.0f);	// 基準の視点の位置
 const float MAX_NEAR = 10.0f;		// ニアの最大値
 const float MAX_FAR = 2500.0f;		// ファーの最大値
 const float FIELD_OF_VIEW = D3DXToRadian(45.0f);	// 視野角
@@ -52,7 +52,7 @@ CCamera::~CCamera()
 void CCamera::Init()
 {
 	m_posV = STD_POS_V;
-	m_posR = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_posR = D3DXVECTOR3(0.0f, 0.0f, -100.0f);
 	m_vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);	// 固定
 }
 
