@@ -31,6 +31,7 @@ public:
 		LABEL_Explanation_Icon,	// 操作説明(アイコン)
 		LABEL_Number,			// ナンバー画像
 		LABEL_Number_Secret,	// ナンバー秘匿用
+		LABEL_Ranking,			// らんきんぐ
 		LABEL_MAX
 	};
 

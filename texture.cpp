@@ -32,6 +32,7 @@ const string FILE_PATH[] =
 	"data/TEXTURE/Explanation_Icon.png"	,	// 操作説明(アイコン)
 	"data/TEXTURE/Number.png",				// 畳(線無し)
 	"data/TEXTURE/Number_Secret.png",		// ナンバー秘匿用
+	"data/TEXTURE/Ranking.png",				// らんきんぐ
 };
 }
 
