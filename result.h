@@ -16,7 +16,7 @@
 // 前方宣言
 //==================================================
 class CMenu;
-class CRanking;
+class CRankingUI;
 
 //==================================================
 // クラス
@@ -44,7 +44,7 @@ private:
 	/* メンバ変数 */
 private:
 	CMenu* m_pMenu;	// メニューの情報
-	CRanking* m_pRanking;
+	CRankingUI* m_pRanking;
 };
 
 #endif // !_RESULT_H_

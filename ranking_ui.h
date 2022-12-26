@@ -4,8 +4,8 @@
 // Auther：Arita Meigen
 //
 //=========================================
-#ifndef _RANKING_H_		// このマクロ定義がされてなかったら
-#define _RANKING_H_		// 二重インク―ルード防止のマクロ定義
+#ifndef _RANKING_UI_H_		// このマクロ定義がされてなかったら
+#define _RANKING_UI_H_		// 二重インク―ルード防止のマクロ定義
 
 #include "object2D.h"
 
@@ -17,11 +17,11 @@ class CScore;
 //=========================================
 // スコアクラスを定義
 //=========================================
-class CRanking
+class CRankingUI
 {
 public:
-	CRanking();							//コンストラクタ
-	virtual ~CRanking() ;				//デストラクタ
+	CRankingUI();							//コンストラクタ
+	virtual ~CRankingUI() ;				//デストラクタ
 
 	
 	HRESULT Init() ;	//初期化
@@ -29,7 +29,7 @@ public:
 	void Uninit() ;		//終了
 
 	//クリエイト処理
-	static CRanking* Create();
+	static CRankingUI* Create();
 
 	void Save();
 	void Load();

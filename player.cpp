@@ -10,6 +10,8 @@
 //==================================================
 #include "player.h"
 #include "application.h"
+#include "mode.h"
+#include "fade.h"
 #include "utility.h"
 
 //==================================================
@@ -36,6 +38,8 @@ int CPlayer::m_killCount = 0;
 //--------------------------------------------------
 void CPlayer::CreateAll()
 {
+	m_killCount = 0;
+
 	for (int i = 0; i < MAX_PLAYER; i++)
 	{
 		m_pPlayer[i] = CPlayer::Create(i, POS_Y[i]);
@@ -83,8 +87,9 @@ CPlayer* CPlayer::Create(int index, float posDest)
 //--------------------------------------------------
 void CPlayer::AddKill(const D3DXVECTOR3& move)
 {
-	if (m_killCount >= MAX_PLAYER)
+	if (m_killCount + 1 >= MAX_PLAYER)
 	{
+		CApplication::GetInstance()->GetFade()->ChangeMode(CMode::MODE_RESULT);
 		return;
 	}
 
