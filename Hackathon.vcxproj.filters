@@ -115,6 +115,12 @@
     <ClCompile Include="obstacle.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh_field.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompile.h" />

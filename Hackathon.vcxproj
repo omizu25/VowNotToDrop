@@ -167,8 +167,10 @@
     <ClCompile Include="inputjoypad.cpp" />
     <ClCompile Include="inputkeyboard.cpp" />
     <ClCompile Include="instancing.cpp" />
+    <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="mesh_field.cpp" />
     <ClCompile Include="mode.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="object.cpp" />
@@ -201,8 +203,10 @@
     <ClInclude Include="inputkeyboard.h" />
     <ClInclude Include="inputkeydata.h" />
     <ClInclude Include="instancing.h" />
+    <ClInclude Include="light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="mesh_field.h" />
     <ClInclude Include="mode.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="object.h" />
