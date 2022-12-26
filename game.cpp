@@ -63,8 +63,20 @@ void CGame::Init()
 		CMessage::Create(pos, 800.0f, 500.0f);
 	}
 
+	{// 背景
+		CObject3D* pObj = CObject3D::Create();
+
+		D3DXVECTOR3 size = D3DXVECTOR3(1800.0f, 0.0f, 1800.0f);
+
+		// サイズの設定
+		pObj->SetSize(size);
+
+		// テクスチャの設定
+		pObj->SetTexture(CTexture::LAVEL_TATAMI);
+	}
+
 	//メッシュフィールドの生成
-	CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
+	//CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
 
 	// 障害物の生成
 	CObstacleManager::Create();	// プレイヤーの生成
