@@ -143,21 +143,21 @@ void CObstacle::Update()
 			switch (nPopNumber)
 			{
 			case 0:
-				if (pInput->Press(KEY_LEFT))
+				if ((pInput->Press(KEY_LEFT) || pInput->Press(JOYPAD_X)) && nPopNumber == 0)
 				{// ¶
 					Shield(D3DXVECTOR3(-150.0f, 0.0f, 100.0f));
 				}
 				break;
 
 			case 1:
-				if (pInput->Press(KEY_RIGHT) && nPopNumber == 1)
+				if ((pInput->Press(KEY_RIGHT) || pInput->Press(JOYPAD_B)) && nPopNumber == 1)
 				{// ‰E
 					Shield(D3DXVECTOR3(150.0f, 0.0f, 100.0f));
 				}
 				break;
 
 			case 2:
-				if (pInput->Press(KEY_DOWN) && nPopNumber == 2)
+				if ((pInput->Press(KEY_DOWN) || pInput->Press(JOYPAD_A)) && nPopNumber == 2)
 				{// ‰º
 					Shield(D3DXVECTOR3(0.0f, 0.0f, -70.0f));
 				}
