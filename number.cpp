@@ -27,7 +27,7 @@ void CNumber::Init()
 	CObject2D::Init();
 
 	//サイズの設定
-	CObject2D::SetSize(D3DXVECTOR3(50.0f, 50.0f,0.0f));
+	CObject2D::SetSize(D3DXVECTOR3(50.0f, 80.0f,0.0f));
 
 	// テクスチャの設定
 	CObject2D::SetTexture(CTexture::LABEL_Number);

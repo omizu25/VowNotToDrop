@@ -11,14 +11,10 @@
 #include "instancing.h"
 #include "application.h"
 #include "renderer.h"
-#include "utility.h"
 #include "camera.h"
 #include "texture.h"
 #include "effect.h"
 
-//==================================================
-// プロトタイプ宣言
-//==================================================
 namespace
 {
 void CopyBuf(IDirect3DVertexBuffer9* pBuf, void* pSrc, unsigned size);	// バッファのコピー
@@ -108,8 +104,8 @@ void CInstancing::Init()
 		D3DVERTEXELEMENT9 declElems[] = {
 			{ 0, 0, D3DDECLTYPE_FLOAT2, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0 },	// LocalPos
 			{ 0, 8, D3DDECLTYPE_FLOAT2, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TEXCOORD, 0 },	// UV
-			{ 1, 0, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_NORMAL, 0 },	// WorldPos と rot
-			{ 2, 0, D3DDECLTYPE_FLOAT4, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_COLOR, 0 },		// Color
+			{ 1, 0, D3DDECLTYPE_FLOAT4, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_COLOR, 0 },		// WorldPos
+			{ 2, 0, D3DDECLTYPE_FLOAT4, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_COLOR, 1 },		// Color
 			{ 3, 0, D3DDECLTYPE_FLOAT2, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TEXCOORD, 1 },	// size
 			D3DDECL_END()
 		};
@@ -198,13 +194,16 @@ void CInstancing::Draw()
 	// デバイスへのポインタの取得
 	LPDIRECT3DDEVICE9 pDevice = CApplication::GetInstance()->GetDevice();
 
+	// ライトを無効にする
+	pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
+
 	// レンダーステートの設定
 	pDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
 	pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
 
 	{// エフェクトの情報取得
-		D3DXVECTOR3* worldPos = new D3DXVECTOR3[numAll];	// ワールド座標位置バッファ
+		D3DXVECTOR4* worldPos = new D3DXVECTOR4[numAll];	// ワールド座標位置バッファ
 		D3DXCOLOR* col = new D3DXCOLOR[numAll];
 		D3DXVECTOR2* size = new D3DXVECTOR2[numAll];
 
@@ -220,13 +219,13 @@ void CInstancing::Draw()
 			{// nullチェック
 				continue;
 			}
-
 			objPos = pObject[i]->GetPos();
 			move = pObject[i]->GetMove();
 			
 			worldPos[num].x = objPos.x;
 			worldPos[num].y = objPos.y;
-			worldPos[num].z = atan2f(move.x, move.y);
+			worldPos[num].z = objPos.z;
+			worldPos[num].w = atan2f(move.x, move.y);
 
 			col[num] = pObject[i]->GetCol();
 			size[num] = pObject[i]->GetSize();
@@ -237,7 +236,7 @@ void CInstancing::Draw()
 		assert(num == numAll);
 
 		// バッファのコピー
-		CopyBuf(m_pPosBuff, worldPos, sizeof(D3DXVECTOR3) * numAll);
+		CopyBuf(m_pPosBuff, worldPos, sizeof(D3DXVECTOR4) * numAll);
 		CopyBuf(m_pColBuff, col, sizeof(D3DXCOLOR) * numAll);
 		CopyBuf(m_pSizeBuff, size, sizeof(D3DXVECTOR2) * numAll);
 
@@ -255,7 +254,7 @@ void CInstancing::Draw()
 	// 頂点とインデックスを設定して描画
 	pDevice->SetVertexDeclaration(m_pDecl);
 	pDevice->SetStreamSource(0, m_pVtxBuff, 0, sizeof(Vtx));
-	pDevice->SetStreamSource(1, m_pPosBuff, 0, sizeof(D3DXVECTOR3));
+	pDevice->SetStreamSource(1, m_pPosBuff, 0, sizeof(D3DXVECTOR4));
 	pDevice->SetStreamSource(2, m_pColBuff, 0, sizeof(D3DXCOLOR));
 	pDevice->SetStreamSource(3, m_pSizeBuff, 0, sizeof(D3DXVECTOR2));
 	pDevice->SetIndices(m_pIndexBuff);
@@ -266,8 +265,11 @@ void CInstancing::Draw()
 
 	CCamera* pCamera = CApplication::GetInstance()->GetRenderer()->GetCamera();
 
-	m_pShader->SetMatrix("g_view", &pCamera->GetView());
-	m_pShader->SetMatrix("g_proj", &pCamera->GetProj());
+	D3DXMATRIX view = pCamera->GetView();
+	D3DXMATRIX proj = pCamera->GetProj();
+
+	m_pShader->SetMatrix("g_view", &view);
+	m_pShader->SetMatrix("g_proj", &proj);
 
 	UINT passNum = 0;
 	m_pShader->Begin(&passNum, 0);
@@ -288,6 +290,9 @@ void CInstancing::Draw()
 	pDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
 	pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
+	//: ライトを有効に戻す
+	pDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
 }
 
 namespace

@@ -97,8 +97,6 @@ void CResult::Uninit()
 //--------------------------------------------------
 void CResult::Update()
 {
-	Input();
-
 	CDomino::AddMove();
 }
 
@@ -107,18 +105,4 @@ void CResult::Update()
 //--------------------------------------------------
 void CResult::Draw()
 {
-}
-
-//--------------------------------------------------
-// 入力
-//--------------------------------------------------
-void CResult::Input()
-{
-	CInput* pInput = CInput::GetKey();
-
-	if (pInput->Trigger(KEY_BACK))
-	{// Pキーが押された
-		// モードの変更
-		CApplication::GetInstance()->GetFade()->ChangeMode(EMode::MODE_RANKING);
-	}
 }

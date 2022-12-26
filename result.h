@@ -36,10 +36,6 @@ public:
 	void Update() override;	// 更新
 	void Draw() override;	// 描画
 
-	/* ↓メンバ変数↓ */
-private:
-	void Input();	// 入力
-
 	/* メンバ変数 */
 private:
 	CMenu* m_pMenu;	// メニューの情報

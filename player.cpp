@@ -17,6 +17,7 @@
 #include "application.h"
 #include "sound.h"
 #include "game.h"
+#include "effect.h"
 
 //==================================================
 // ’è‹`
@@ -51,6 +52,14 @@ void CPlayer::CreateAll()
 		if (i == 0)
 		{
 			m_pPlayer[i]->SetLabel(CFileXManager::LABEL_Daruma_Head);
+		}
+		else if (i == 1)
+		{
+			m_pPlayer[i]->SetLabel(CFileXManager::LABEL_Daruma_Body_Orange);
+		}
+		else if (i == 2)
+		{
+			m_pPlayer[i]->SetLabel(CFileXManager::LABEL_Daruma_Body_Yellow);
 		}
 		else
 		{
@@ -95,6 +104,8 @@ void CPlayer::AddKill(const D3DXVECTOR3& move)
 	{
 		CGame* pGame = (CGame*)CApplication::GetInstance()->GetMode();
 		pGame->EndGame();
+
+		CEffect::Explosion(D3DXVECTOR3(0.0f, 50.0f, 100.0f));
 	}
 
 	m_killCount++;
