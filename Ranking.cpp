@@ -49,6 +49,7 @@ HRESULT CRanking::Init()
 		m_apScore[nCnt] = CScore::Create(D3DXVECTOR3(470.0f, 190.0f + 119.0f*nCnt, 0.0f));
 	}
 	m_nflashing = 0;
+	m_nflashcnt = 0;
 	Load();
 	Ranking();
 	Save();
@@ -65,11 +66,11 @@ void CRanking::Update()
 	if (m_nRankUpdate!=-1)
 	{
 		//F‚ÌÝ’è
-		m_apScore[m_nRankUpdate]->SetCor(D3DXCOLOR(1.0f, 0.0f, 0.0f, m_nflashing));
+		m_apScore[m_nRankUpdate]->SetCor(D3DXCOLOR(1.0f, 0.0f, 0.0f, (float)m_nflashing));
 		m_nflashcnt++;
-		if (m_nflashcnt %10==0)
+		if (m_nflashcnt %FLASH_INTER ==0)
 		{
-			m_nflashing ^= m_nflashing;
+			m_nflashing = m_nflashing^1;
 		}
 	}
 	for (int i = 0; i < MAX_RANK; i++)

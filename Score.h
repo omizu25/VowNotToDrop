@@ -37,14 +37,15 @@ public:
 	//クリエイト処理
 	static CScore* Create(const D3DXVECTOR3 &pos);
 
-	void Addpos();
-
+	//スコアの加算
+	void Addpos() { m_nScore++; };
 
 	//スコアの設定
 	void Set();
 	void SetCor(D3DXCOLOR col);
 	void SetScore(int Score) { m_nScore = Score; };
 	int GetScore() { return m_nScore; };
+	static void AddFrag() { m_bAddflag = true; };
 
 	//void Ranking();
 
@@ -56,6 +57,7 @@ private:
 	int			m_nTimerRanking;		//ランキング画面表示タイマー
 	float		m_fPtnrank;				//プレイヤー点滅
 	int			m_nCntrank;				//点滅のカウント用
+	static bool	m_bAddflag;				//加算フラグ
 
 };
 
