@@ -9,6 +9,30 @@
 // インクルード
 //--------------------------
 #include "shield.h"
+#include "input.h"
+#include "utility.h"
+
+//==================================================
+// 定義
+//==================================================
+namespace
+{
+const float STD_SPEED = 15.0f;	// 移動量
+const float POP_POS_Y = -100.0f;	// 出現のYの位置
+const D3DXVECTOR3 POP_POS[] =
+{// 出現の位置
+	D3DXVECTOR3(-100.0f, POP_POS_Y, 0.0f),
+	D3DXVECTOR3(100.0f, POP_POS_Y, 0.0f),
+	D3DXVECTOR3(0.0f, POP_POS_Y, -100.0f),
+};
+const D3DXVECTOR3 POP_ROT[] =
+{// 出現の位置
+	D3DXVECTOR3(0.0f, D3DX_PI, 0.0f),
+	D3DXVECTOR3(0.0f, 0.0f, 0.0f),
+	D3DXVECTOR3(0.0f, D3DX_PI * 0.5f, 0.0f),
+};
+const int POP_MAX = sizeof(POP_POS) / sizeof(POP_POS[0]);	// 出現位置の最大数
+}
 
 //================================
 // コンストラクタ
@@ -32,8 +56,6 @@ CShield::~CShield()
 void CShield::Init()
 {
 	CModel::Init();
-
-	CModel::SetPos(m_defaultPos);
 }
 
 //================================
@@ -49,6 +71,78 @@ void CShield::Uninit()
 //================================
 void CShield::Update()
 {
+	CInput* pInput = CInput::GetKey();
+
+	if (m_index == 0)
+	{
+		if (pInput->Press(KEY_LEFT))
+		{// 左
+			// 位置の取得
+			D3DXVECTOR3 pos = CModel::GetPos();
+
+			Homing(&pos, pos, D3DXVECTOR3(m_defaultPos.x, 0.0f, m_defaultPos.z), STD_SPEED);
+
+			// 位置の設定
+			CModel::SetPos(pos);
+		}
+		else
+		{
+			// 位置の取得
+			D3DXVECTOR3 pos = CModel::GetPos();
+
+			Homing(&pos, pos, m_defaultPos, STD_SPEED);
+
+			// 位置の設定
+			CModel::SetPos(pos);
+		}
+	}
+	else if (m_index == 1)
+	{
+		if (pInput->Press(KEY_RIGHT))
+		{// 右
+		 // 位置の取得
+			D3DXVECTOR3 pos = CModel::GetPos();
+
+			Homing(&pos, pos, D3DXVECTOR3(m_defaultPos.x, 0.0f, m_defaultPos.z), STD_SPEED);
+
+			// 位置の設定
+			CModel::SetPos(pos);
+		}
+		else
+		{
+			// 位置の取得
+			D3DXVECTOR3 pos = CModel::GetPos();
+
+			Homing(&pos, pos, m_defaultPos, STD_SPEED);
+
+			// 位置の設定
+			CModel::SetPos(pos);
+		}
+	}
+	else if (m_index == 2)
+	{
+		if (pInput->Press(KEY_DOWN))
+		{// 下
+		 // 位置の取得
+			D3DXVECTOR3 pos = CModel::GetPos();
+
+			Homing(&pos, pos, D3DXVECTOR3(m_defaultPos.x, 0.0f, m_defaultPos.z), STD_SPEED);
+
+			// 位置の設定
+			CModel::SetPos(pos);
+		}
+		else
+		{
+			// 位置の取得
+			D3DXVECTOR3 pos = CModel::GetPos();
+
+			Homing(&pos, pos, m_defaultPos, STD_SPEED);
+
+			// 位置の設定
+			CModel::SetPos(pos);
+		}
+	}
+
 	CModel::Update();
 }
 
@@ -63,7 +157,18 @@ void CShield::Draw()
 //================================
 // 生成
 //================================
-CShield* CShield::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
+void CShield::CreateAll()
+{
+	for (int i = 0; i < POP_MAX; i++)
+	{
+		CShield::Create(POP_POS[i], POP_ROT[i], i);
+	}
+}
+
+//================================
+// 生成
+//================================
+CShield* CShield::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, int index)
 {
 	CShield *pShield = nullptr;
 
@@ -74,13 +179,18 @@ CShield* CShield::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 
 	if (pShield != nullptr)
 	{//NULLチェック
+		//初期化
+		pShield->Init();
+
 		//メンバ変数に代入
 		pShield->m_defaultPos = pos;	//初期位置
 		pShield->m_rot = rot;			//向き
+		pShield->m_index = index;
 		pShield->SetLabel(CFileXManager::LABEL_BAMBOO);	//モデル
+
+		pShield->SetPos(pos);
+		pShield->SetRot(rot);
 		
-		//初期化
-		pShield->Init();
 	}
 
 	return pShield;

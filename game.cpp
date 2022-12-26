@@ -64,7 +64,7 @@ void CGame::Init()
 	CPlayer::CreateAll();
 
 	//‚‚Ì¶¬
-	CShield::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	CShield::CreateAll();
 
 	m_pScore = CScore::Create(D3DXVECTOR3(640.0f, 310.0f, 0.0f));
 	m_pScore->SetScore(0);

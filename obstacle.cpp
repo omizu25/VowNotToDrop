@@ -133,15 +133,15 @@ void CObstacle::Update()
 
 		if (pInput->Press(KEY_LEFT))
 		{// ç∂
-			Shield(D3DXVECTOR3(-50.0f, 0.0f, 0.0f));
+			Shield(D3DXVECTOR3(-100.0f, 0.0f, 0.0f));
 		}
 		else if (pInput->Press(KEY_RIGHT))
 		{// âE
-			Shield(D3DXVECTOR3(50.0f, 0.0f, 0.0f));
+			Shield(D3DXVECTOR3(100.0f, 0.0f, 0.0f));
 		}
 		else if (pInput->Press(KEY_DOWN))
 		{// â∫
-			Shield(D3DXVECTOR3(0.0f, 0.0f, -50.0f));
+			Shield(D3DXVECTOR3(0.0f, 0.0f, -100.0f));
 		}
 
 		if (!InRange(&pos, D3DXVECTOR3(10.0f, 0.0f, 10.0f)))
@@ -190,7 +190,7 @@ const D3DXVECTOR3& CObstacle::GetMove() const
 //--------------------------------------------------
 void CObstacle::Shield(const D3DXVECTOR3& pos)
 {
-	if (CollisionCircle(CModel::GetPos(), 10.0f, pos, 10.0f))
+	if (CollisionCircle(CModel::GetPos(), 0.0f, pos, 50.0f))
 	{// ñÂèºÇ…ìñÇΩÇ¡ÇΩ
 		m_move = m_move * -5.0f;
 		m_move.y = 10.0f;
