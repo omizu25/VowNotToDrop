@@ -41,7 +41,7 @@ void CMessage::Init()
 	//オブジェクト情報の設定
 	CObject2D::SetPos(m_pos);
 	CObject2D::SetSize(D3DXVECTOR3(m_fWidth, m_fHeight, 0.0f));
-	CObject2D::SetTexture(CTexture::LAVEL_TATAMI);
+	CObject2D::SetTexture(CTexture::LAVEL_Tutorial);
 }
 
 //=======================
@@ -67,7 +67,7 @@ void CMessage::Update()
 	//-------------------
 	if (m_nCntTime >= 120)
 	{
-		m_col.a -= 0.1f;
+		m_col.a -= 0.05f;
 		CObject2D::SetCol(m_col);
 	}
 

@@ -106,14 +106,14 @@ bool InRange(D3DXVECTOR3* pPos, const D3DXVECTOR3& range)
 		out = true;
 	}
 
-	if (pPos->y >= range.y)
+	if (pPos->z >= range.z)
 	{// ã‚Ì•Ç
-		pPos->y = range.y;
+		pPos->z = range.z;
 		out = true;
 	}
-	else if (pPos->y <= -range.y)
+	else if (pPos->z <= -range.z)
 	{// ‰º‚Ì•Ç
-		pPos->y = -range.y;
+		pPos->z = -range.z;
 		out = true;
 	}
 

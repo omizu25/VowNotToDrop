@@ -17,7 +17,9 @@
 #include "object3D.h"
 #include "obstacle.h"
 #include "mesh_field.h"
+#include "obstacle_manager.h"
 #include "message.h"
+#include "player.h"
 
 //==================================================
 // 定義
@@ -45,18 +47,18 @@ CGame::~CGame()
 //--------------------------------------------------
 void CGame::Init()
 {
-	// 生成
-	CObstacle::Create();
-
 	//メッセージの表示
 	{
 		D3DXVECTOR3 pos(640.0f, 360.0f, 0.0f);
-		CMessage::Create(pos, 500.0f, 500.0f);
+		CMessage::Create(pos, 800.0f, 500.0f);
 	}
 
 	//メッシュフィールドの生成
 	CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
-}
+
+	// 障害物の生成
+	CObstacleManager::Create();	// プレイヤーの生成
+	CPlayer::CreateAll();}
 
 //--------------------------------------------------
 // 終了
@@ -74,7 +76,8 @@ void CGame::Update()
 
 	if (pInput->Trigger(KEY_PAUSE))
 	{// Pキーが押された
-		CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+		CPlayer::AddKill();
+		//CEffect::Explosion(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	}
 	
 	if (pInput->Trigger(KEY_BACK))
