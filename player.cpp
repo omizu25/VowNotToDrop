@@ -19,11 +19,12 @@ namespace
 {
 const float POS_Y[CPlayer::MAX_PLAYER] =
 {
-	30.0f,
-	20.0f,
-	10.0f,
+	250.0f,
+	200.0f,
+	150.0f,
 };
 }
+
 //==================================================
 // 静的メンバ変数
 //==================================================
@@ -165,16 +166,18 @@ void CPlayer::Update()
 			CObject::SetRelease();
 		}
 	}
+	else
+	{
+		m_posDest = POS_Y[index];
 
-	m_posDest = POS_Y[index];
+		// 位置の取得
+		D3DXVECTOR3 pos = CModel::GetPos();
 
-	// 位置の取得
-	D3DXVECTOR3 pos = CModel::GetPos();
+		Homing(&pos, pos, D3DXVECTOR3(0.0f, m_posDest, 0.0f), 1.0f);
 
-	Homing(&pos, pos, D3DXVECTOR3(0.0f, m_posDest, 0.0f), 1.0f);
-
-	// 位置の設定
-	CModel::SetPos(pos);
+		// 位置の設定
+		CModel::SetPos(pos);
+	}
 }
 
 //--------------------------------------------------
