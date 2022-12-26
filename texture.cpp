@@ -23,6 +23,7 @@ const string FILE_PATH[] =
 	"data/TEXTURE/PressEnter.png",	// プレスエンター
 	"data/TEXTURE/TitleLogo.png",	// タイトルロゴ
 	"data/TEXTURE/Result.png",		// リザルト
+	"data/TEXTURE/Tatami.png",		// 畳
 };
 }
 
