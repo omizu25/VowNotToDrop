@@ -16,7 +16,7 @@
 //==================================================
 namespace
 {
-const int MIN_INTERVAL = 40;	// 間隔の最小値
+const int MIN_INTERVAL = 30;	// 間隔の最小値
 const int MAX_INTERVAL = 120;	// 間隔の最大値
 const int POP_INTERVAL = 4;		// 出現の最大数
 const float POP_POS_Y = 10.0f;	// 出現のYの位置
@@ -135,9 +135,9 @@ void CObstacleManager::Game()
 
 		if (m_pop >= POP_INTERVAL)
 		{// 最大数を越した
-			m_move += 0.05f;
+			//m_move += 0.05f;
 
-			m_interval -= 3 + 1 * m_pop;
+			m_interval -= 5 + 3 * m_pop;
 
 			if (m_interval <= MIN_INTERVAL)
 			{// 最小値以下
