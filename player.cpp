@@ -21,9 +21,9 @@ namespace
 {
 const float POS_Y[CPlayer::MAX_PLAYER] =
 {
-	30.0f,
-	20.0f,
-	10.0f,
+	250.0f,
+	200.0f,
+	150.0f,
 };
 }
 

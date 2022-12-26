@@ -36,9 +36,11 @@ public:
 	void Update() override;	// XV
 	void Draw() override;	// •`‰æ
 
+	static CScore*GetScore() { return m_pScore; };
+
 	/* «ƒƒ“ƒo•Ï”« */
 private:
-	CScore* m_pScore;
+	static CScore* m_pScore;
 };
 
 #endif // !_GAME_H_

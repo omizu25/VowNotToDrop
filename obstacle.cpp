@@ -13,6 +13,7 @@
 #include "utility.h"
 #include "player.h"
 #include "input.h"
+#include "Score.h"
 
 //==================================================
 // ’è‹`
@@ -195,5 +196,6 @@ void CObstacle::Shield(const D3DXVECTOR3& pos)
 		m_move = m_move * -5.0f;
 		m_move.y = 10.0f;
 		m_collision = true;
+		CScore::AddFrag();
 	}
 }
