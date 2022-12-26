@@ -11,10 +11,12 @@
 #include "ranking.h"
 #include "menu.h"
 #include "application.h"
+#include "instancing.h"
 #include "fade.h"
 #include "object2D.h"
 #include "object3D.h"
 #include "ranking_ui.h"
+#include "sound.h"
 
 //==================================================
 // 定義
@@ -74,6 +76,9 @@ void CRanking::Init()
 		m_pMenu->SetTexture(0, CTexture::LABEL_PressEnter);
 	}
 	m_pRanking= CRankingUI::Create();
+
+	//曲の再生
+	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Result);
 }
 
 //--------------------------------------------------
@@ -81,6 +86,9 @@ void CRanking::Init()
 //--------------------------------------------------
 void CRanking::Uninit()
 {
+	//曲の停止
+	CApplication::GetInstance()->GetSound()->Stop();
+
 	if (m_pMenu != nullptr)
 	{// nullチェック
 		m_pMenu = nullptr;

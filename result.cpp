@@ -93,6 +93,9 @@ void CResult::Init()
 		// テクスチャの設定
 		m_pMenu->SetTexture(0, CTexture::LABEL_PressEnter);
 	}
+
+	//曲の再生
+	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Result);
 }
 
 //--------------------------------------------------
@@ -100,6 +103,9 @@ void CResult::Init()
 //--------------------------------------------------
 void CResult::Uninit()
 {
+	//曲の停止
+	CApplication::GetInstance()->GetSound()->Stop();
+
 	// 解放
 	Release();
 }

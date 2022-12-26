@@ -11,9 +11,11 @@
 #include "title.h"
 #include "menu.h"
 #include "application.h"
+#include "instancing.h"
 #include "fade.h"
 #include "object2D.h"
 #include "object3D.h"
+#include "sound.h"
 
 //==================================================
 // 定義
@@ -84,6 +86,9 @@ void CTitle::Init()
 		// テクスチャの設定
 		m_pMenu->SetTexture(0, CTexture::LABEL_PressEnter);
 	}
+
+	//曲の再生
+	CApplication::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_Title);
 }
 
 //--------------------------------------------------
@@ -91,6 +96,9 @@ void CTitle::Init()
 //--------------------------------------------------
 void CTitle::Uninit()
 {
+	//曲の停止
+	CApplication::GetInstance()->GetSound()->Stop();
+
 	if (m_pMenu != nullptr)
 	{// nullチェック
 		m_pMenu = nullptr;
