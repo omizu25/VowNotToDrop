@@ -37,7 +37,7 @@ public:
 	//------------------
 	// Ã“Iƒƒ“ƒoŠÖ”
 	//------------------
-	CMeshField* Create(CTexture::ELabel texture);
+	static CMeshField* Create(CTexture::ELabel texture);
 
 private:
 	//------------------

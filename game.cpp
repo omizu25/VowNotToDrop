@@ -16,7 +16,9 @@
 #include "mode.h"
 #include "object3D.h"
 #include "obstacle.h"
+#include "mesh_field.h"
 #include "obstacle_manager.h"
+#include "message.h"
 #include "player.h"
 
 //==================================================
@@ -45,22 +47,18 @@ CGame::~CGame()
 //--------------------------------------------------
 void CGame::Init()
 {
-	{// 背景
-		CObject3D* pObj = CObject3D::Create();
-
-		// 色の設定
-		pObj->SetCol(D3DXCOLOR(0.5f, 0.5f, 0.5f, 1.0f));
-
-		// テクスチャの設定
-		pObj->SetTexture(CTexture::LABEL_NONE);
+	//メッセージの表示
+	{
+		D3DXVECTOR3 pos(640.0f, 360.0f, 0.0f);
+		CMessage::Create(pos, 500.0f, 500.0f);
 	}
 
-	// 障害物の生成
-	CObstacleManager::Create();
+	//メッシュフィールドの生成
+	CMeshField::Create(CTexture::LAVEL_TATAMI_NOLINE);
 
-	// プレイヤーの生成
-	CPlayer::CreateAll();
-}
+	// 障害物の生成
+	CObstacleManager::Create();	// プレイヤーの生成
+	CPlayer::CreateAll();}
 
 //--------------------------------------------------
 // 終了
